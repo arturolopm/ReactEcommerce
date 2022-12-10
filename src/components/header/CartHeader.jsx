@@ -1,6 +1,6 @@
 import { useCartDetails } from "@/context/useCartDetails";
 import CartIcon from "@/components/icons/CartIcon";
-import CardDetailsHeader from "@/components/header/CartDetailsHeader";
+import CartDetailsHeader from "@/components/header/CartDetailsHeader";
 import { useContext, useState } from "react";
 import useClickOutside from "@/hooks/useClickOutside";
 
@@ -27,7 +27,7 @@ const CartHeader = () => {
           {cartQuantity}
         </span>
       </button>
-      {isOpenCart && <CardDetailsHeader />}
+      {isOpenCart && <CartDetailsHeader />}
     </div>
   );
 };
