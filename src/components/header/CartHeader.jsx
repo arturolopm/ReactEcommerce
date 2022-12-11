@@ -1,11 +1,11 @@
-import { useCartDetails } from "@/context/useCartDetails";
+import { useGeneralContext } from "@/context/useGeneralContext";
 import CartIcon from "@/components/icons/CartIcon";
 import CartDetailsHeader from "@/components/header/CartDetailsHeader";
 import { useContext, useState } from "react";
 import useClickOutside from "@/hooks/useClickOutside";
 
 const CartHeader = () => {
-  const { cartQuantity } = useContext(useCartDetails);
+  const { cartQuantity } = useContext(useGeneralContext);
   const [isOpenCart, setIsOpenCart] = useState(false);
   const divRef = useClickOutside(() => setIsOpenCart(false));
 

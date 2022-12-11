@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import { useCartDetails } from "@/context/useCartDetails";
+import { useGeneralContext } from "@/context/useGeneralContext";
 
 import DeleteIcon from "@/components/icons/DeleteIcon";
 
 const CartDetailsHeader = () => {
-  const { cartItems, deleteCartItems, totalPrice } = useContext(useCartDetails);
+  const { cartItems, deleteCartItems, totalPrice } =
+    useContext(useGeneralContext);
 
   return (
     <div className=" absolute top-[125%] left-0 z-10 w-full text-base text-slate-700 md:top-full md:left-full md:max-w-md md:-translate-x-full">

@@ -1,10 +1,10 @@
 import CartIcon from "@/components/icons/CartIcon.jsx";
-import { useCartDetails } from "@/context/useCartDetails";
+import { useGeneralContext } from "@/context/useGeneralContext";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 
 const DetailsProductsHome = ({ objectProduct }) => {
-  const { addCartItems } = useContext(useCartDetails);
+  const { addCartItems } = useContext(useGeneralContext);
   const [count, setCount] = useState(1);
 
   const incrementCount = () => setCount(count + 1);

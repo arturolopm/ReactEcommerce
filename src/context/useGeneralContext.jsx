@@ -4,6 +4,7 @@ export const useGeneralContext = createContext();
 
 export default (props) => {
   const [cartItems, setCartItems] = useState([]);
+  console.log(cartItems);
 
   const addCartItems = (item) => {
     if (cartItems.length === 0) {
@@ -14,7 +15,7 @@ export default (props) => {
     let isPresent = false;
     console.log(item);
     for (let i = 0; i < newCartItems.length; i++) {
-      if (newCartItems[i].id === item.id) {
+      if (newCartItems[i]._id === item._id) {
         newCartItems[i].quantity += item.quantity;
 
         isPresent = true;
@@ -37,7 +38,7 @@ export default (props) => {
   );
 
   const deleteCartItems = (id) => {
-    setCartItems(cartItems.filter((product) => product.id !== id));
+    setCartItems(cartItems.filter((product) => product._id !== _id));
   };
 
   return (

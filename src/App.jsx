@@ -9,14 +9,14 @@ import IndexHeader from "@/components/header/IndexHeader";
 import IndexProducts from "@/components/product/IndexProducts";
 import Contact from "@/components/contact/Contact";
 
-import CartDetailsProvider from "@/context/useCartDetails";
+import GeneralContextProvider from "@/context/useGeneralContext";
 import Home from "@/components/home/Home";
 import Footer from "@/components/footer/Footer";
 
 const App = () => {
   return (
     <>
-      <CartDetailsProvider>
+      <GeneralContextProvider>
         <Router>
           <Routes>
             {["/", "/home"].map((multiplePath, index) => (
@@ -35,7 +35,7 @@ const App = () => {
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Router>
-      </CartDetailsProvider>
+      </GeneralContextProvider>
       <Footer />
     </>
   );
