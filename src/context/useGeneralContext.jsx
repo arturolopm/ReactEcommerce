@@ -37,7 +37,7 @@ export default (props) => {
     0
   );
 
-  const deleteCartItems = (id) => {
+  const deleteCartItems = (_id) => {
     setCartItems(cartItems.filter((product) => product._id !== _id));
   };
 

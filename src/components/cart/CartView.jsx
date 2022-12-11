@@ -4,14 +4,16 @@ import { useGeneralContext } from "@/context/useGeneralContext";
 import DeleteIcon from "@/components/icons/DeleteIcon";
 import { Link } from "react-router-dom";
 
-const CartDetailsHeader = () => {
+const CartView = () => {
   const { cartItems, deleteCartItems, totalPrice } =
     useContext(useGeneralContext);
 
   return (
-    <div className=" absolute top-[125%] left-0 z-10 w-full text-base text-slate-700 md:top-full md:left-full md:max-w-md md:-translate-x-full">
+    <section className=" mx-auto min-h-screen max-w-7xl bg-white px-4 md:text-base">
       <div className=" mx-4 rounded-md bg-white shadow-md">
-        <h4 className=" px-6 py-2 text-lg font-bold ">Cart</h4>
+        <h4 className=" px-6 py-2 text-lg font-bold text-green-primary">
+          CART
+        </h4>
         <hr />
         {cartItems.length === 0 && (
           <p className="py-16 text-center">Your cart is empty</p>
@@ -26,6 +28,7 @@ const CartDetailsHeader = () => {
             </Link>
             <div>
               <h6>{item?.title}</h6>
+              <p>{item?.description}</p>
               <div>
                 <span>
                   ${(item?.price * (1 - item?.discount))?.toFixed(2)} x{" "}
@@ -51,15 +54,15 @@ const CartDetailsHeader = () => {
           </article>
         ))}
         {cartItems.length != 0 && (
-          <Link to="/cart">
+          <div className=" px-6 pb-8">
             <button className=" w-full rounded-md bg-green-primary py-4 text-white transition-all hover:bg-green-700">
               Checkout = ${totalPrice?.toFixed(2)}
             </button>
-          </Link>
+          </div>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 
-export default CartDetailsHeader;
+export default CartView;
