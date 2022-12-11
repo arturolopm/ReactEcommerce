@@ -32,6 +32,10 @@ export default (props) => {
     (acc, current) => current.quantity + acc,
     0
   );
+  const totalPrice = cartItems.reduce(
+    (acc, current) => current.quantity * current.price + acc,
+    0
+  );
 
   const deleteCartItems = (id) => {
     setCartItems(cartItems.filter((product) => product.id !== id));
@@ -39,7 +43,13 @@ export default (props) => {
 
   return (
     <useCartDetails.Provider
-      value={{ cartItems, addCartItems, deleteCartItems, cartQuantity }}
+      value={{
+        cartItems,
+        addCartItems,
+        deleteCartItems,
+        cartQuantity,
+        totalPrice,
+      }}
       //   cartQuantity
     >
       {props.children}

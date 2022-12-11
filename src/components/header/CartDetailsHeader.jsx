@@ -4,7 +4,7 @@ import { useCartDetails } from "@/context/useCartDetails";
 import DeleteIcon from "@/components/icons/DeleteIcon";
 
 const CartDetailsHeader = () => {
-  const { cartItems, deleteCartItems } = useContext(useCartDetails);
+  const { cartItems, deleteCartItems, totalPrice } = useContext(useCartDetails);
 
   return (
     <div className=" absolute top-[125%] left-0 z-10 w-full text-base text-slate-700 md:top-full md:left-full md:max-w-md md:-translate-x-full">
@@ -49,7 +49,7 @@ const CartDetailsHeader = () => {
         {cartItems.length != 0 && (
           <div className=" px-6 pb-8">
             <button className=" w-full rounded-md bg-green-primary py-4 text-white transition-all hover:bg-green-700">
-              Checkout
+              Checkout = ${totalPrice?.toFixed(2)}
             </button>
           </div>
         )}

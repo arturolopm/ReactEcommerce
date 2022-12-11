@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import IndexHeader from "@/components/header/IndexHeader";
 import IndexProducts from "@/components/product/IndexProducts";
@@ -27,6 +32,7 @@ const App = () => {
               element={[<IndexHeader />, <IndexProducts />]}
             />
             <Route path="/contact" element={[<IndexHeader />, <Contact />]} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Router>
       </CartDetailsProvider>
