@@ -37,10 +37,10 @@ const Home = () => {
   return (
     <section className=" mx-auto min-h-screen max-w-7xl bg-white px-4 md:text-base">
       {products.map((product) => (
-        <div key={product.id}>
+        <div key={product._id}>
           <div className=" mx-auto mb-2 flex max-h-[25%] flex-row items-center gap-1 rounded-xl md:container ">
             <GalleryProductsHome
-              id={product.id}
+              _id={product._id}
               ARRAY_IMGS={product.imagesMain}
               ARRAY_IMG_SMALL={product.imagesSmall}
             />

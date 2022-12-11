@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const SlideProductsHome = ({
   ARRAY_IMGS = [],
   ARRAY_IMG_SMALL = [],
-  id = null,
+  _id = null,
   ...props
 }) => {
   const [imgIndex, setImgIndex] = useState(0);
@@ -21,7 +21,7 @@ const SlideProductsHome = ({
 
   return (
     <section className="min-w-[150px] xl:max-w-sm" {...props}>
-      <Link to={`/products/${id}`} className=" max-h-[25%] min-w-[150px]  ">
+      <Link to={`/products/${_id}`} className=" max-h-[25%] min-w-[150px]  ">
         <img
           src={ARRAY_IMGS[imgIndex]}
           alt=""

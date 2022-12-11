@@ -20,10 +20,10 @@ const DetailsProductsHome = ({ objectProduct }) => {
     });
     setCount(1);
   };
-  const id = objectProduct.id;
+  const _id = objectProduct._id;
   return (
     <section className="container flex max-h-[30vh] flex-col px-4  text-xs md:px-4">
-      <Link to={`/products/${id}`}>
+      <Link to={`/products/${_id}`}>
         <p className=" mb-3 hidden font-bold uppercase tracking-wide text-green-primary md:block md:text-lg">
           {objectProduct.subtitle}
         </p>

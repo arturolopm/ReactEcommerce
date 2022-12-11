@@ -28,7 +28,7 @@ const App = () => {
             ))}
 
             <Route
-              path="/products/:id"
+              path="/products/:_id"
               element={[<IndexHeader />, <IndexProducts />]}
             />
             <Route path="/contact" element={[<IndexHeader />, <Contact />]} />

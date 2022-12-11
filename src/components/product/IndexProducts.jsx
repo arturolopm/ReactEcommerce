@@ -6,18 +6,18 @@ import DetailsProduct from "@/components/product/details/DetailsProduct";
 import GalleryProducts from "@/components/product/gallery/GalleryProducts";
 
 const IndexProducts = () => {
-  let { id } = useParams();
+  let { _id } = useParams();
 
   const [product, setProduct] = useState({});
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/products/${id}`);
+      const { data } = await axios.get(`/api/products/${_id}`);
       setProduct(data);
     };
     fetchProduct();
   }, []);
-  console.log("product: ", product, "id: ", id);
+  console.log("product: ", product, "id: ", _id);
 
   return (
     <main className="mx-auto grid grid-cols-1 items-center gap-8 md:container md:min-h-[calc(100vh-88px-3px)] md:grid-cols-2">

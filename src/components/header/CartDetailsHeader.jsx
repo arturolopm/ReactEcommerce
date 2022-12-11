@@ -16,10 +16,10 @@ const CartDetailsHeader = () => {
         )}
         {cartItems.map((item) => (
           <article
-            key={item?.id}
+            key={item?._id}
             className="grid grid-cols-[1fr_4fr_1fr] items-center gap-6 px-6 py-4 "
           >
-            <img src={item?.imagesSmall[0]} alt="" className="rounded-md" />
+            <img src={item?.imagesMain[0]} alt="" className="rounded-md" />
             <div>
               <h6>{item?.title}</h6>
               <div>
@@ -40,7 +40,7 @@ const CartDetailsHeader = () => {
             </div>
             <button
               className=" ml-auto"
-              onClick={() => deleteCartItems(item?.id)}
+              onClick={() => deleteCartItems(item?._id)}
             >
               <DeleteIcon className="hover:fill-green-primary" />
             </button>

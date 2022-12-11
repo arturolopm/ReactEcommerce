@@ -1,10 +1,9 @@
 import { createContext, useState } from "react";
 
-export const useCartDetails = createContext();
+export const useGeneralContext = createContext();
 
 export default (props) => {
   const [cartItems, setCartItems] = useState([]);
-  console.log(cartItems);
 
   const addCartItems = (item) => {
     if (cartItems.length === 0) {
@@ -15,7 +14,7 @@ export default (props) => {
     let isPresent = false;
     console.log(item);
     for (let i = 0; i < newCartItems.length; i++) {
-      if (newCartItems[i]._id === item._id) {
+      if (newCartItems[i].id === item.id) {
         newCartItems[i].quantity += item.quantity;
 
         isPresent = true;
@@ -38,11 +37,11 @@ export default (props) => {
   );
 
   const deleteCartItems = (id) => {
-    setCartItems(cartItems.filter((product) => product._id !== _id));
+    setCartItems(cartItems.filter((product) => product.id !== id));
   };
 
   return (
-    <useCartDetails.Provider
+    <useGeneralContext.Provider
       value={{
         cartItems,
         addCartItems,
@@ -53,6 +52,6 @@ export default (props) => {
       //   cartQuantity
     >
       {props.children}
-    </useCartDetails.Provider>
+    </useGeneralContext.Provider>
   );
 };
