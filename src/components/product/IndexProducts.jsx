@@ -23,7 +23,7 @@ const IndexProducts = () => {
     <main className="mx-auto grid grid-cols-1 items-center gap-8 md:container md:min-h-[calc(100vh-88px-3px)] md:grid-cols-2">
       <GalleryProducts
         ARRAY_IMGS={product.imagesMain}
-        ARRAY_IMG_SMALL={product.imagesSmall}
+        ARRAY_IMG_SMALL={product.imagesMain}
       />
       <DetailsProduct objectProduct={product} />
     </main>

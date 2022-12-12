@@ -1,10 +1,20 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const useGeneralContext = createContext();
 
 export default (props) => {
-  const [cartItems, setCartItems] = useState([]);
-  console.log(cartItems);
+  const initialCart = JSON.parse(window.localStorage.getItem("cart")) || [];
+
+  const [cartItems, setCartItems] = useState(initialCart);
+
+  useEffect(() => {
+    const cart = window.localStorage.getItem("cart");
+    if (cart !== null) setCartItems(JSON.parse(cart));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addCartItems = (item) => {
     if (cartItems.length === 0) {
@@ -13,7 +23,7 @@ export default (props) => {
     const newCartItems = [...cartItems];
 
     let isPresent = false;
-    console.log(item);
+
     for (let i = 0; i < newCartItems.length; i++) {
       if (newCartItems[i]._id === item._id) {
         newCartItems[i].quantity += item.quantity;
