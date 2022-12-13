@@ -1,7 +1,13 @@
+import { useContext } from "react";
+import { useGeneralContext } from "@/context/useGeneralContext";
 import NavLinkHeader from "@/components/header/NavLinkHeader";
 import CloseIcon from "@/components/icons/CloseIcon";
 import useClickOutside from "@/hooks/useClickOutside";
+
 const NavLinks = (props) => {
+  const { cartItems } = useContext(useGeneralContext);
+  const cart = cartItems.length ? true : false;
+  console.log(cartItems.length);
   const divRef = useClickOutside(() => handleCloseMenu());
   const isOpenMenu = props.isOpenMenu;
   const setIsOpenMenu = props.setIsOpenMenu;
@@ -23,6 +29,7 @@ const NavLinks = (props) => {
       <NavLinkHeader text="Home" />
       <NavLinkHeader text="Products" />
       <NavLinkHeader text="Contact" />
+      {cart && <NavLinkHeader text="Cart" />}
     </nav>
   );
 };
