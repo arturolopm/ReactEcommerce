@@ -17,7 +17,6 @@ const IndexProducts = () => {
     };
     fetchProduct();
   }, []);
-  console.log("product: ", product, "id: ", _id);
 
   return (
     <main className="mx-auto grid grid-cols-1 items-center gap-8 md:container md:min-h-[calc(100vh-88px-3px)] md:grid-cols-2">
