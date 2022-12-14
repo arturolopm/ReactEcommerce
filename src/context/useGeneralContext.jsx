@@ -1,11 +1,10 @@
 import { createContext, useState, useEffect } from "react";
-
+import axios from "axios";
 export const useGeneralContext = createContext();
 
 export default (props) => {
-  const [cartItems, setCartItems] = useState(
-    JSON.parse(window.localStorage.getItem("cart")) || []
-  );
+  const cartFromStorage = JSON.parse(window.localStorage.getItem("cart")) || [];
+  const [cartItems, setCartItems] = useState(cartFromStorage);
 
   useEffect(() => {
     const cart = window.localStorage.getItem("cart");
@@ -51,6 +50,43 @@ export default (props) => {
     setCartItems(cartItems.filter((product) => product._id !== _id));
   };
 
+  // Login User
+  const initialUser = JSON.parse(window.localStorage.getItem("user")) || [];
+  console.log(initialUser);
+  const [user, setUser] = useState(initialUser);
+  console.log(user);
+  // useEffect(() => {
+  //   const newUser = window.localStorage.getItem("user");
+  //   if (newUser !== null) setUser(JSON.parse(newUser));
+  // }, []);
+
+  // useEffect(() => {
+  //   window.localStorage.setItem("user", JSON.stringify(user));
+  // }, [user]);
+  const login = async ({ email, password }) => {
+    const data = JSON.stringify({
+      email,
+      password,
+    });
+
+    const config = {
+      method: "post",
+      url: "http://localhost:5000/api/users/login",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+    console.log(data);
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   return (
     <useGeneralContext.Provider
       value={{
@@ -59,6 +95,8 @@ export default (props) => {
         deleteCartItems,
         cartQuantity,
         totalPrice,
+        login,
+        user,
       }}
       //   cartQuantity
     >

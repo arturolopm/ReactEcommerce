@@ -5,7 +5,7 @@ import DeleteIcon from "@/components/icons/DeleteIcon";
 import { Link } from "react-router-dom";
 
 const CartView = () => {
-  const { cartItems, deleteCartItems, totalPrice } =
+  const { cartItems, deleteCartItems, totalPrice, user } =
     useContext(useGeneralContext);
 
   return (
@@ -14,6 +14,7 @@ const CartView = () => {
         <h4 className=" px-6 py-2 text-lg font-bold text-green-primary">
           CART
         </h4>
+        <h1>{user}</h1>
         <hr />
         {cartItems.length === 0 && (
           <p className="py-16 text-center">Your cart is empty</p>

@@ -7,7 +7,7 @@ import useClickOutside from "@/hooks/useClickOutside";
 const NavLinks = (props) => {
   const { cartItems } = useContext(useGeneralContext);
   const cart = cartItems.length ? true : false;
-  console.log(cartItems.length);
+
   const divRef = useClickOutside(() => handleCloseMenu());
   const isOpenMenu = props.isOpenMenu;
   const setIsOpenMenu = props.setIsOpenMenu;
