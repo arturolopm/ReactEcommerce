@@ -17,8 +17,8 @@ const LoginForm = () => {
   };
 
   return (
-    <div className=" flex">
-      <form onSubmit={submitHandler}>
+    <div className=" container top-2/4 mx-auto flex min-h-[80vh] max-w-4xl flex-wrap content-center justify-center border border-solid bg-slate-100 px-4 ">
+      <form className="  top-8 border-2 py-8" onSubmit={submitHandler}>
         {loginError && <h1>{loginError.message}</h1>}
         <input
           className=" mb-4 w-full border-b-2"
@@ -43,8 +43,11 @@ const LoginForm = () => {
           </button>
         </div>
         <p>
-          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-            Create Account
+          <Link
+            className=" text-green-primary"
+            to={redirect ? `/register?redirect=${redirect}` : "/register"}
+          >
+            or Create Account
           </Link>
         </p>
       </form>

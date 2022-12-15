@@ -14,7 +14,7 @@ const CartView = () => {
         <h4 className=" px-6 py-2 text-lg font-bold text-green-primary">
           CART
         </h4>
-        <h1>{user}</h1>
+        <h1 className=" ml-8">{user.name}</h1>
         <hr />
         {cartItems.length === 0 && (
           <p className="py-16 text-center">Your cart is empty</p>

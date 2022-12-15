@@ -51,18 +51,20 @@ export default (props) => {
   };
 
   // Login User
-  const initialUser = JSON.parse(window.localStorage.getItem("user")) || [];
-  console.log(initialUser);
+  const initialUser = JSON.parse(window.localStorage.getItem("user"));
+
   const [user, setUser] = useState(initialUser);
   console.log(user);
-  // useEffect(() => {
-  //   const newUser = window.localStorage.getItem("user");
-  //   if (newUser !== null) setUser(JSON.parse(newUser));
-  // }, []);
+  useEffect(() => {
+    const newUser = window.localStorage.getItem("user");
+    if (newUser !== null) setUser(JSON.parse(newUser));
+  }, []);
 
-  // useEffect(() => {
-  //   window.localStorage.setItem("user", JSON.stringify(user));
-  // }, [user]);
+  useEffect(() => {
+    window.localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
+
+  const [loginError, setLoginError] = useState();
   const login = async ({ email, password }) => {
     const data = JSON.stringify({
       email,
@@ -77,16 +79,17 @@ export default (props) => {
       },
       data: data,
     };
-    console.log(data);
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        setUser(response.data);
       })
       .catch(function (error) {
-        console.log(error);
+        error.message = "wrong email or password";
+        setLoginError(error);
       });
   };
+  console.log(loginError);
   return (
     <useGeneralContext.Provider
       value={{
@@ -97,6 +100,7 @@ export default (props) => {
         totalPrice,
         login,
         user,
+        loginError,
       }}
       //   cartQuantity
     >
