@@ -1,4 +1,8 @@
+import { useContext } from "react";
+import { useGeneralContext } from "@/context/useGeneralContext";
 const LoggedView = () => {
+  const { logOut } = useContext(useGeneralContext);
+
   return (
     <>
       <a href="#" className=" group relative hover:text-green-primary">
@@ -12,7 +16,10 @@ const LoggedView = () => {
       <form action="login" method="post"></form>
 
       <div className=" text-right">
-        <button className=" h-6 w-3/5 rounded-md bg-dark-grayish-blue text-white transition-all hover:bg-green-700">
+        <button
+          onClick={logOut}
+          className=" h-6 w-3/5 rounded-md bg-dark-grayish-blue text-white transition-all hover:bg-green-700"
+        >
           Log Out
         </button>
       </div>

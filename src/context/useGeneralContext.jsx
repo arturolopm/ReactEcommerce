@@ -89,7 +89,11 @@ export default (props) => {
         setLoginError(error);
       });
   };
-  console.log(loginError);
+  const logOut = () => {
+    setUser(null);
+    setLoginError(null);
+  };
+
   return (
     <useGeneralContext.Provider
       value={{
@@ -99,6 +103,7 @@ export default (props) => {
         cartQuantity,
         totalPrice,
         login,
+        logOut,
         user,
         loginError,
       }}
