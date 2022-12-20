@@ -53,7 +53,7 @@ const RegisterForm = () => {
             )}
             {registerError && ( // If there is a password error, render the error message
               <div className="my-2 text-sm font-bold text-red-600">
-                {registerError.message}
+                {registerError}
               </div>
             )}
             {/* Name input field */}

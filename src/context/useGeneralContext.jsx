@@ -36,6 +36,9 @@ export default (props) => {
     }
     setCartItems(newCartItems);
   };
+  const deleteAllCartItems = () => {
+    return setCartItems([]);
+  };
 
   const cartQuantity = cartItems.reduce(
     (acc, current) => current.quantity + acc,
@@ -112,7 +115,9 @@ export default (props) => {
         setRegisterError("");
       })
       .catch(function (error) {
-        setRegisterError(error);
+        setRegisterError(
+          "Email already exist, please login instead of register"
+        );
         console.log(error.message);
       });
   };
@@ -127,6 +132,7 @@ export default (props) => {
         cartItems,
         addCartItems,
         deleteCartItems,
+        deleteAllCartItems,
         cartQuantity,
         totalPrice,
         login,

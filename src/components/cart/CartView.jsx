@@ -5,7 +5,7 @@ import DeleteIcon from "@/components/icons/DeleteIcon";
 import { Link } from "react-router-dom";
 
 const CartView = () => {
-  const { cartItems, deleteCartItems, totalPrice, user } =
+  const { cartItems, deleteAllCartItems, deleteCartItems, totalPrice, user } =
     useContext(useGeneralContext);
 
   return (
@@ -16,6 +16,12 @@ const CartView = () => {
         </h4>
         <h1 className=" ml-8">{user?.name}</h1>
         <hr />
+        <div className=" text-left text-slate-500 ">
+          Delete all items
+          <button className=" mx-4" onClick={() => deleteAllCartItems([])}>
+            <DeleteIcon className="hover:fill-green-primary" />
+          </button>
+        </div>
         {cartItems.length === 0 && (
           <p className="py-16 text-center">Your cart is empty</p>
         )}
@@ -38,10 +44,8 @@ const CartView = () => {
                 <span>
                   ${(item?.price * (1 - item?.discount))?.toFixed(2)} x{" "}
                   {item?.quantity}
-                </span>{" "}
+                </span>
                 <span className=" font-bold">
-                  {" "}
-                  ={" "}
                   {(
                     item?.price *
                     (1 - item?.discount) *
