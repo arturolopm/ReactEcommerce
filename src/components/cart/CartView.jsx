@@ -14,7 +14,7 @@ const CartView = () => {
         <h4 className=" px-6 py-2 text-lg font-bold text-green-primary">
           CART
         </h4>
-        <h1 className=" ml-8">{user.name}</h1>
+        <h1 className=" ml-8">{user?.name}</h1>
         <hr />
         {cartItems.length === 0 && (
           <p className="py-16 text-center">Your cart is empty</p>
@@ -24,16 +24,20 @@ const CartView = () => {
             key={item?._id}
             className="grid grid-cols-[1fr_4fr_1fr] items-center gap-6 px-6 py-4 "
           >
-            <Link to={`/products/${item._id}`}>
-              <img src={item?.imagesMain[0]} alt="" className="rounded-md" />
+            <Link className=" " to={`/products/${item._id}`}>
+              <img
+                src={item?.imagesMain[0]}
+                alt=""
+                className="min-w-[100px] rounded-md"
+              />
             </Link>
             <div>
               <h6>{item?.title}</h6>
-              <p>{item?.description}</p>
+              <p className=" hidden md:block">{item?.description}</p>
               <div>
                 <span>
                   ${(item?.price * (1 - item?.discount))?.toFixed(2)} x{" "}
-                  {item.quantity}
+                  {item?.quantity}
                 </span>{" "}
                 <span className=" font-bold">
                   {" "}

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useGeneralContext } from "@/context/useGeneralContext";
+import { Link } from "react-router-dom";
 const LoggedView = () => {
   const { logOut } = useContext(useGeneralContext);
 
@@ -16,12 +17,14 @@ const LoggedView = () => {
       <form action="login" method="post"></form>
 
       <div className=" text-right">
-        <button
-          onClick={logOut}
-          className=" h-6 w-3/5 rounded-md bg-dark-grayish-blue text-white transition-all hover:bg-green-700"
-        >
-          Log Out
-        </button>
+        <Link to="/login">
+          <button
+            onClick={logOut}
+            className=" h-6 w-3/5 rounded-md bg-dark-grayish-blue text-white transition-all hover:bg-green-700"
+          >
+            Log Out
+          </button>
+        </Link>
       </div>
     </>
   );

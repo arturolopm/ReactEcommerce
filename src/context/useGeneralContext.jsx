@@ -89,6 +89,33 @@ export default (props) => {
         setLoginError(error);
       });
   };
+  const [registerError, setRegisterError] = useState();
+  const register = async ({ name, email, password }) => {
+    const data = JSON.stringify({
+      name,
+      email,
+      password,
+    });
+
+    const config = {
+      method: "post",
+      url: "http://localhost:5000/api/users/",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        setUser(response.data);
+        setRegisterError("");
+      })
+      .catch(function (error) {
+        setRegisterError(error);
+        console.log(error.message);
+      });
+  };
   const logOut = () => {
     setUser(null);
     setLoginError(null);
@@ -106,6 +133,8 @@ export default (props) => {
         logOut,
         user,
         loginError,
+        register,
+        registerError,
       }}
       //   cartQuantity
     >
