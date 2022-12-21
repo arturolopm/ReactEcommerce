@@ -17,10 +17,10 @@ const LoggedView = () => {
         History purchase
         <span className="absolute bottom-0 block h-[1px] w-full scale-x-0 transition-all duration-200 group-hover:scale-x-100 group-hover:bg-green-primary"></span>
       </a>
-      <a href="#" className="group relative hover:text-green-primary">
+      <Link to="/profile" className="group relative hover:text-green-primary">
         Edit profile
         <span className=" absolute bottom-0 mb-1 block h-[1px] w-full scale-x-0 transition-all duration-200 group-hover:scale-x-100 group-hover:bg-green-primary"></span>
-      </a>
+      </Link>
       <form action="login" method="post"></form>
 
       <div className=" text-right">

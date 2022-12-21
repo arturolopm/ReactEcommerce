@@ -15,6 +15,7 @@ import LoginView from "@/components/forms/LoginView";
 import Home from "@/components/home/Home";
 import Footer from "@/components/footer/Footer";
 import RegisterForm from "@/components/forms/RegisterForm";
+import ProfileForm from "@/components/forms/ProfileForm";
 
 const App = () => {
   return (
@@ -40,6 +41,10 @@ const App = () => {
             <Route
               path="/register"
               element={[<IndexHeader />, <RegisterForm />]}
+            />
+            <Route
+              path="/profile"
+              element={[<IndexHeader />, <ProfileForm />]}
             />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
