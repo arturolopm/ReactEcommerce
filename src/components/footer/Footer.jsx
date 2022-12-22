@@ -2,7 +2,7 @@ import { FaWhatsapp, FaInstagram, FaFacebook, FaTiktok } from "react-icons/fa";
 const Footer = () => {
   return (
     <>
-      <div className="  w-full bg-slate-100">
+      <div className="  bottom-0 w-full  translate-y-full bg-slate-100">
         <div className=" container mx-auto flex max-w-4xl  flex-wrap justify-between border border-solid bg-slate-100 px-4  text-3xl text-green-primary">
           <p className=" w-full text-center text-lg text-slate-700">
             JadeHouseCol in all social media

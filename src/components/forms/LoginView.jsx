@@ -27,7 +27,7 @@ const LoginForm = () => {
   return (
     <div className=" h-[69vh] w-full bg-slate-100">
       {/* Welcome heading */}
-      <h1 className="mx-auto mt-10 mb-4 text-center text-3xl font-bold text-green-primary">
+      <h1 className="mx-auto mt-4 mb-4 text-center text-3xl font-bold text-green-primary md:mt-10">
         Welcome
       </h1>
       {/* Form container */}

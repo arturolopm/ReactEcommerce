@@ -112,7 +112,7 @@ export default (props) => {
     axios(config)
       .then(function (response) {
         setUser(response.data);
-        setRegisterError("");
+        setRegisterError("User succesfully registered");
       })
       .catch(function (error) {
         setRegisterError(
@@ -120,7 +120,38 @@ export default (props) => {
         );
         console.log(error.message);
       });
+    setTimeout(() => setRegisterError(""), 3000);
   };
+  const [updateProfileError, setUpdateProfileError] = useState();
+  const updateProfile = async ({ name, email, password }) => {
+    const data = JSON.stringify({
+      name,
+      email,
+      password,
+    });
+
+    const config = {
+      method: "put",
+      url: "http://localhost:5000/api/users/profile",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        setUser(response.data);
+        setUpdateProfileError("Profile Updated");
+      })
+      .catch(function (error) {
+        setUpdateProfileError(error.message);
+        console.log(error.message);
+      });
+    setTimeout(() => setUpdateProfileError(""), 3000);
+  };
+
   const logOut = () => {
     setUser(null);
     setLoginError(null);
@@ -141,6 +172,8 @@ export default (props) => {
         loginError,
         register,
         registerError,
+        updateProfile,
+        updateProfileError,
       }}
       //   cartQuantity
     >
