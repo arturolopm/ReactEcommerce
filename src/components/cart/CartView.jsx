@@ -64,9 +64,11 @@ const CartView = () => {
         ))}
         {cartItems.length != 0 && (
           <div className=" px-6 pb-8">
-            <button className=" w-full rounded-md bg-green-primary py-4 text-white transition-all hover:bg-green-700">
-              Checkout = ${totalPrice?.toFixed(2)}
-            </button>
+            <Link to="/shipping">
+              <button className=" w-full rounded-md bg-green-primary py-4 text-white transition-all hover:bg-green-700">
+                Checkout and Shipping = ${totalPrice?.toFixed(2)}
+              </button>
+            </Link>
           </div>
         )}
       </div>

@@ -53,6 +53,38 @@ export default (props) => {
     setCartItems(cartItems.filter((product) => product._id !== _id));
   };
 
+  // Save Shipping Address
+  const addressFromStorage =
+    JSON.parse(window.localStorage.getItem("shippingAddress")) || [];
+
+  const [shippingAddress, setShippingAddress] = useState(addressFromStorage);
+
+  useEffect(() => {
+    const shippingAddressFromStorage =
+      window.localStorage.getItem("shippingAddress");
+    if (shippingAddressFromStorage !== null)
+      setShippingAddress(JSON.parse(shippingAddressFromStorage));
+  }, []);
+
+  const saveShippingAddress = ({
+    address,
+    city,
+    postalCode,
+    state,
+    country,
+  }) => {
+    window.localStorage.setItem(
+      "shippingAddress",
+      JSON.stringify({ address, city, postalCode, state, country })
+    );
+  };
+  const savePaymentMethod = ({ paymentMethod }) => {
+    window.localStorage.setItem(
+      "paymentMethod",
+      JSON.stringify({ paymentMethod })
+    );
+  };
+
   // Login User
   const initialUser = JSON.parse(window.localStorage.getItem("user"));
 
@@ -174,6 +206,8 @@ export default (props) => {
         registerError,
         updateProfile,
         updateProfileError,
+        saveShippingAddress,
+        savePaymentMethod,
       }}
       //   cartQuantity
     >

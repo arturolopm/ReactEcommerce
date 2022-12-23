@@ -10,11 +10,12 @@ const CartHeader = () => {
   const divRef = useClickOutside(() => setIsOpenCart(false));
   const [newQ, setNewQ] = useState("text-xs");
   useEffect(() => {
-    setNewQ("text-base");
+    setNewQ("text-base bg-dark-grayish-blue");
     setTimeout(() => {
       setNewQ("text-xs");
     }, 500);
   }, [cartQuantity]);
+
   const handleOpenCart = () => {
     setIsOpenCart(!isOpenCart);
   };
@@ -35,7 +36,7 @@ const CartHeader = () => {
           {cartQuantity}
         </span>
       </button>
-      {isOpenCart && <CartDetailsHeader />}
+      {isOpenCart && <CartDetailsHeader setIsOpenCart={setIsOpenCart} />}
     </div>
   );
 };

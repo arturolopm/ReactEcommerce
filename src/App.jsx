@@ -16,6 +16,9 @@ import Home from "@/components/home/Home";
 import Footer from "@/components/footer/Footer";
 import RegisterForm from "@/components/forms/RegisterForm";
 import ProfileForm from "@/components/forms/ProfileForm";
+import ShippingForm from "@/components/forms/ShippingForm";
+import PaymentForm from "@/components/forms/PaymentForm";
+import PlaceOrderForm from "@/components/forms/PlaceOrderForm";
 
 const App = () => {
   return (
@@ -45,6 +48,18 @@ const App = () => {
             <Route
               path="/profile"
               element={[<IndexHeader />, <ProfileForm />]}
+            />
+            <Route
+              path="/shipping"
+              element={[<IndexHeader />, <ShippingForm />]}
+            />
+            <Route
+              path="/payment"
+              element={[<IndexHeader />, <PaymentForm />]}
+            />
+            <Route
+              path="/place-order"
+              element={[<IndexHeader />, <PlaceOrderForm />]}
             />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

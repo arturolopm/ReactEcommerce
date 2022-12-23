@@ -3,14 +3,13 @@ import { useGeneralContext } from "@/context/useGeneralContext";
 
 import DeleteIcon from "@/components/icons/DeleteIcon";
 import { Link } from "react-router-dom";
-
-const CartDetailsHeader = (props) => {
+const CartInfo = () => {
   const { cartItems, deleteCartItems, deleteAllCartItems, totalPrice } =
     useContext(useGeneralContext);
-  const setIsOpenCart = props.setIsOpenCart;
+
   return (
-    <div className=" absolute top-[125%] left-0 z-10 w-full text-base text-slate-700 md:top-full md:left-full md:max-w-md md:-translate-x-full">
-      <div className=" mx-4 rounded-md bg-white shadow-md">
+    <div className=" mx-auto flex max-w-5xl flex-col gap-4 md:flex-row">
+      <div className=" mx-4 max-w-3xl rounded-md bg-white text-sm shadow-md md:w-3/5">
         <h4 className=" px-6 py-2 text-lg font-bold ">Cart</h4>
         <hr />
         <div className=" text-left text-slate-500 ">
@@ -25,7 +24,7 @@ const CartDetailsHeader = (props) => {
         {cartItems.map((item) => (
           <article
             key={item?._id}
-            className="grid grid-cols-[1fr_4fr_1fr] items-center gap-6 px-6 py-4 "
+            className="grid grid-cols-[1fr_4fr_1fr] items-center gap-6 px-6 py-2 md:py-4 "
           >
             <Link to={`/products/${item._id}`}>
               <img src={item?.imagesMain[0]} alt="" className="rounded-md" />
@@ -56,16 +55,41 @@ const CartDetailsHeader = (props) => {
             </button>
           </article>
         ))}
-        {cartItems.length != 0 && (
-          <Link to="/cart" onClick={() => setIsOpenCart(false)}>
-            <button className=" w-full rounded-md bg-green-primary py-4 text-white transition-all hover:bg-green-700">
-              Checkout = ${totalPrice?.toFixed(2)}
-            </button>
-          </Link>
-        )}
+
+        {/* <Link to="/cart">
+        <button className=" w-full rounded-md bg-green-primary py-4 text-white transition-all hover:bg-green-700">
+          Checkout = ${totalPrice?.toFixed(2)}
+        </button>
+      </Link> */}
+      </div>
+      <div className="flex flex-col md:w-2/5">
+        <table className="  grow table-fixed text-very-dark-blue">
+          <tbody class="  justify-center bg-slate-100">
+            <tr>
+              <td>Price</td>
+              <td>${totalPrice?.toFixed(2)}</td>
+            </tr>
+            <tr>
+              <td>Shipping</td>
+              <td>$0</td>
+            </tr>
+            <tr>
+              <td>tax</td>
+              <td>$20</td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td>${totalPrice?.toFixed(2)}</td>
+            </tr>
+          </tbody>
+        </table>
+        <Link to="/cart">
+          <button className=" w-full rounded-md bg-green-primary py-4 text-white transition-all hover:bg-green-700">
+            Place Order
+          </button>
+        </Link>
       </div>
     </div>
   );
 };
-
-export default CartDetailsHeader;
+export default CartInfo;
