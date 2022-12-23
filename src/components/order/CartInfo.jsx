@@ -64,7 +64,7 @@ const CartInfo = () => {
       </div>
       <div className="flex flex-col md:w-2/5">
         <table className="  grow table-fixed text-very-dark-blue">
-          <tbody class="  justify-center bg-slate-100">
+          <tbody className="  justify-center bg-slate-100">
             <tr>
               <td>Price</td>
               <td>${totalPrice?.toFixed(2)}</td>

@@ -1,22 +1,25 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useGeneralContext } from "@/context/useGeneralContext";
 
 import Home from "@/components/home/Home";
 
 const ShippingForm = () => {
-  const { cartItems, saveShippingAddress } = useContext(useGeneralContext);
+  const { cartItems, saveShippingAddress, shippingAddress, user } =
+    useContext(useGeneralContext);
   // Use the useState hook to manage the name, email, password, and passwordConfirmation state
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [state, setState] = useState("");
-  const [country, setCountry] = useState(""); // Add state to track password error
-
+  const [address, setAddress] = useState(shippingAddress.address);
+  const [city, setCity] = useState(shippingAddress.city);
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
+  const [state, setState] = useState(shippingAddress.state);
+  const [country, setCountry] = useState(shippingAddress.country);
+  const [email, setEmail] = useState(user?.email || shippingAddress.email);
+  const navigate = useNavigate();
   // Define a submitHandler function to handle the form submission
   const submitHandler = (event) => {
     event.preventDefault();
-    saveShippingAddress({ address, city, postalCode, state, country });
+    saveShippingAddress({ address, city, postalCode, state, country, email });
+    navigate("/payment");
   };
 
   return (
@@ -93,16 +96,26 @@ const ShippingForm = () => {
               value={country}
               onChange={(event) => setCountry(event.target.value)}
             />
+
+            <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
+              Contact Email
+            </label>
+
+            <input
+              className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
+              type="email"
+              placeholder="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
             {/* Register button */}
             <div className="mt-8">
-              <Link to="/payment">
-                <button
-                  className="focus:shadow-outline-primary w-full rounded-md bg-green-primary py-2 px-4 text-center text-white hover:bg-green-700 focus:outline-none"
-                  type="submit"
-                >
-                  Continue
-                </button>
-              </Link>
+              <button
+                className="focus:shadow-outline-primary w-full rounded-md bg-green-primary py-2 px-4 text-center text-white hover:bg-green-700 focus:outline-none"
+                type="submit"
+              >
+                Continue
+              </button>
             </div>
           </form>
         </div>

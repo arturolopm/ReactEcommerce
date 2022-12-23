@@ -72,17 +72,30 @@ export default (props) => {
     postalCode,
     state,
     country,
+    email,
   }) => {
+    const newShippingAddress = {
+      address,
+      city,
+      postalCode,
+      state,
+      country,
+      email,
+    };
+
+    setShippingAddress(newShippingAddress);
+  };
+  console.log(shippingAddress);
+  useEffect(() => {
     window.localStorage.setItem(
       "shippingAddress",
-      JSON.stringify({ address, city, postalCode, state, country })
+      JSON.stringify(shippingAddress)
     );
-  };
-  const savePaymentMethod = ({ paymentMethod }) => {
-    window.localStorage.setItem(
-      "paymentMethod",
-      JSON.stringify({ paymentMethod })
-    );
+  }, [shippingAddress]);
+
+  const [paymentMethod, setPaymentMethod] = useState("paypal");
+  const savePaymentMethod = ({ paymentMethodForm }) => {
+    setPaymentMethod(paymentMethodForm);
   };
 
   // Login User
@@ -208,6 +221,8 @@ export default (props) => {
         updateProfileError,
         saveShippingAddress,
         savePaymentMethod,
+        shippingAddress,
+        paymentMethod,
       }}
       //   cartQuantity
     >

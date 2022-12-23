@@ -1,16 +1,18 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useGeneralContext } from "@/context/useGeneralContext";
 
 const PaymentForm = () => {
-  const { cartItems, savePaymentMethod } = useContext(useGeneralContext);
+  const { cartItems, savePaymentMethod, paymentMethod } =
+    useContext(useGeneralContext);
   // Use the useState hook to manage the paymentMethod state
-  const [paymentMethod, setPaymentMethod] = useState("creditCard");
-
+  const [paymentMethodForm, setPaymentMethodForm] = useState(paymentMethod);
+  const navigate = useNavigate();
   // Define a submitHandler function to handle the form submission
   const submitHandler = (event) => {
     event.preventDefault();
-    savePaymentMethod({ paymentMethod });
+    savePaymentMethod({ paymentMethodForm });
+    navigate("/place-order");
   };
 
   return (
@@ -41,8 +43,8 @@ const PaymentForm = () => {
                 type="radio"
                 name="paymentMethod"
                 value="paypal"
-                checked={paymentMethod === "paypal"}
-                onChange={(event) => setPaymentMethod(event.target.value)}
+                checked={paymentMethodForm === "paypal"}
+                onChange={(event) => setPaymentMethodForm(event.target.value)}
               />
               Paypal
             </label>
@@ -51,19 +53,18 @@ const PaymentForm = () => {
                 type="radio"
                 name="paymentMethod"
                 value="creditCard"
-                checked={paymentMethod === "creditCard"}
-                onChange={(event) => setPaymentMethod(event.target.value)}
+                checked={paymentMethodForm === "creditCard"}
+                onChange={(event) => setPaymentMethodForm(event.target.value)}
               />
               Credit or Debit Card
             </label>
-            <Link to="/place-order">
-              <button
-                className="hover:bg-green-secondary focus:bg-green-secondary mt-6 w-full rounded-full bg-green-primary py-2 px-4 text-white shadow-md focus:outline-none"
-                type="submit"
-              >
-                Proceed to Payment
-              </button>
-            </Link>
+
+            <button
+              className="hover:bg-green-secondary focus:bg-green-secondary mt-6 w-full rounded-full bg-green-primary py-2 px-4 text-white shadow-md focus:outline-none"
+              type="submit"
+            >
+              Proceed to Payment
+            </button>
           </form>
         </div>
       )}
