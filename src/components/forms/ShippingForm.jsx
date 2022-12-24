@@ -14,6 +14,7 @@ const ShippingForm = () => {
   const [state, setState] = useState(shippingAddress.state);
   const [country, setCountry] = useState(shippingAddress.country);
   const [email, setEmail] = useState(user?.email || shippingAddress.email);
+  const [phone, setPhone] = useState(shippingAddress.phone);
   const navigate = useNavigate();
   // Define a submitHandler function to handle the form submission
   const submitHandler = (event) => {
@@ -24,7 +25,7 @@ const ShippingForm = () => {
 
   return (
     <>
-      <h1 className="mx-auto mt-10 mb-4 text-center text-3xl font-bold text-green-primary">
+      <h1 className="mx-auto mt-5 mb-4 text-center text-3xl font-bold text-green-primary md:mt-10">
         Delivery Address
       </h1>
       {cartItems.length == 0 ? (
@@ -34,7 +35,7 @@ const ShippingForm = () => {
           </h1>
         </div>
       ) : (
-        <div className="h-88 container mx-auto mt-10 mb-20 flex max-w-md flex-wrap justify-center bg-slate-100">
+        <div className="h-88 container mx-auto mt-10 mb-10 flex max-w-md flex-wrap justify-center bg-slate-100 p-5">
           {/* Render the register form */}
           <form
             className="flex w-full max-w-sm flex-col rounded-md bg-white p-8 shadow-md"
@@ -107,6 +108,17 @@ const ShippingForm = () => {
               placeholder="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
+            />
+            <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
+              Contact phone (optional)
+            </label>
+
+            <input
+              className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
+              type="number"
+              placeholder="phone number"
+              value={phone}
+              onChange={(event) => setPhone(event.target.value)}
             />
             {/* Register button */}
             <div className="mt-8">

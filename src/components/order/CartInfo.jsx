@@ -1,11 +1,26 @@
 import { useContext } from "react";
 import { useGeneralContext } from "@/context/useGeneralContext";
+import { useNavigate } from "react-router-dom";
 
 import DeleteIcon from "@/components/icons/DeleteIcon";
 import { Link } from "react-router-dom";
 const CartInfo = () => {
-  const { cartItems, deleteCartItems, deleteAllCartItems, totalPrice } =
-    useContext(useGeneralContext);
+  const {
+    cartItems,
+    deleteCartItems,
+    deleteAllCartItems,
+    totalPrice,
+    placeOrder,
+  } = useContext(useGeneralContext);
+  const shippingPrice = totalPrice > 50 ? 0 : 15;
+  const taxPrice = totalPrice * 0.15;
+  const orderPrice = (totalPrice + shippingPrice + taxPrice)?.toFixed(2);
+
+  const navigate = useNavigate();
+  const HandlePlaceOrder = () => {
+    placeOrder();
+    // navigate("/OrderScreen");
+  };
 
   return (
     <div className=" mx-auto flex max-w-5xl flex-col gap-4 md:flex-row">
@@ -35,10 +50,8 @@ const CartInfo = () => {
                 <span>
                   ${(item?.price * (1 - item?.discount))?.toFixed(2)} x{" "}
                   {item.quantity}
-                </span>{" "}
+                </span>
                 <span className=" font-bold">
-                  {" "}
-                  ={" "}
                   {(
                     item?.price *
                     (1 - item?.discount) *
@@ -55,12 +68,6 @@ const CartInfo = () => {
             </button>
           </article>
         ))}
-
-        {/* <Link to="/cart">
-        <button className=" w-full rounded-md bg-green-primary py-4 text-white transition-all hover:bg-green-700">
-          Checkout = ${totalPrice?.toFixed(2)}
-        </button>
-      </Link> */}
       </div>
       <div className="flex flex-col md:w-2/5">
         <table className="  grow table-fixed text-very-dark-blue">
@@ -71,23 +78,25 @@ const CartInfo = () => {
             </tr>
             <tr>
               <td>Shipping</td>
-              <td>$0</td>
+              <td>${shippingPrice.toFixed(2)}</td>
             </tr>
             <tr>
               <td>tax</td>
-              <td>$20</td>
+              <td>${taxPrice?.toFixed(2)}</td>
             </tr>
             <tr>
               <td>Total</td>
-              <td>${totalPrice?.toFixed(2)}</td>
+              <td>${orderPrice}</td>
             </tr>
           </tbody>
         </table>
-        <Link to="/cart">
-          <button className=" w-full rounded-md bg-green-primary py-4 text-white transition-all hover:bg-green-700">
-            Place Order
-          </button>
-        </Link>
+
+        <button
+          onClick={HandlePlaceOrder}
+          className=" w-full rounded-md bg-green-primary py-4 text-white transition-all hover:bg-green-700"
+        >
+          Place Order
+        </button>
       </div>
     </div>
   );

@@ -38,7 +38,6 @@ const CartDetailsHeader = (props) => {
                   {item.quantity}
                 </span>{" "}
                 <span className=" font-bold">
-                  {" "}
                   ={" "}
                   {(
                     item?.price *

@@ -46,6 +46,8 @@ const CartView = () => {
                   {item?.quantity}
                 </span>
                 <span className=" font-bold">
+                  {" "}
+                  ={" "}
                   {(
                     item?.price *
                     (1 - item?.discount) *

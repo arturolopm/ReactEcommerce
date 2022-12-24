@@ -5,7 +5,7 @@ export const useGeneralContext = createContext();
 export default (props) => {
   const cartFromStorage = JSON.parse(window.localStorage.getItem("cart")) || [];
   const [cartItems, setCartItems] = useState(cartFromStorage);
-
+  console.log(cartItems);
   useEffect(() => {
     const cart = window.localStorage.getItem("cart");
     if (cart !== null) setCartItems(JSON.parse(cart));
@@ -73,6 +73,7 @@ export default (props) => {
     state,
     country,
     email,
+    phone,
   }) => {
     const newShippingAddress = {
       address,
@@ -81,6 +82,7 @@ export default (props) => {
       state,
       country,
       email,
+      phone,
     };
 
     setShippingAddress(newShippingAddress);
@@ -96,6 +98,50 @@ export default (props) => {
   const [paymentMethod, setPaymentMethod] = useState("paypal");
   const savePaymentMethod = ({ paymentMethodForm }) => {
     setPaymentMethod(paymentMethodForm);
+  };
+
+  // const sendCart = cartItems.map(
+
+  // );
+  // Place Order
+
+  const sendCart = cartItems.map((item) => ({
+    ...item,
+    product: item._id,
+  }));
+
+  const [order, setOrder] = useState();
+  const [orderError, setOrderError] = useState();
+  const placeOrder = async () => {
+    const data = JSON.stringify({
+      orderItems: sendCart,
+      shippingAddress: shippingAddress,
+
+      paymentMethod: paymentMethod,
+      itemsPrice: totalPrice,
+      taxprice: totalPrice * 0.15,
+      shippingPrice: totalPrice > 50 ? 0 : 15,
+      totalPrice: totalPrice + (totalPrice > 50 ? 0 : 15) + totalPrice * 0.15,
+    });
+    const config = {
+      method: "post",
+      url: "http://localhost:5000/api/orders/",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+      data: data,
+    };
+    console.log();
+    await axios(config)
+      .then(function (response) {
+        setOrder(response.data);
+        console.log(response.status);
+      })
+      .catch(function (error) {
+        setOrderError(error.message);
+        console.log(orderError);
+      });
   };
 
   // Login User
@@ -128,7 +174,7 @@ export default (props) => {
       data: data,
     };
 
-    axios(config)
+    await axios(config)
       .then(function (response) {
         setUser(response.data);
       })
@@ -154,7 +200,7 @@ export default (props) => {
       data: data,
     };
 
-    axios(config)
+    await axios(config)
       .then(function (response) {
         setUser(response.data);
         setRegisterError("User succesfully registered");
@@ -223,6 +269,8 @@ export default (props) => {
         savePaymentMethod,
         shippingAddress,
         paymentMethod,
+        placeOrder,
+        orderError,
       }}
       //   cartQuantity
     >
