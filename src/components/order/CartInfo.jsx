@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useGeneralContext } from "@/context/useGeneralContext";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +11,7 @@ const CartInfo = () => {
     deleteAllCartItems,
     totalPrice,
     placeOrder,
+    order,
   } = useContext(useGeneralContext);
   const shippingPrice = totalPrice > 50 ? 0 : 15;
   const taxPrice = totalPrice * 0.15;
@@ -19,8 +20,11 @@ const CartInfo = () => {
   const navigate = useNavigate();
   const HandlePlaceOrder = () => {
     placeOrder();
-    // navigate("/OrderScreen");
   };
+  useEffect(() => {
+    order ? navigate(`/order/${order._id}`) : "";
+    console.log(order);
+  }, [order]);
 
   return (
     <div className=" mx-auto flex max-w-5xl flex-col gap-4 md:flex-row">

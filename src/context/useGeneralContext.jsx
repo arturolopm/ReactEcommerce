@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+
 export const useGeneralContext = createContext();
 
 export default (props) => {
@@ -110,6 +111,8 @@ export default (props) => {
     product: item._id,
   }));
 
+  // place order
+
   const [order, setOrder] = useState();
   const [orderError, setOrderError] = useState();
   const placeOrder = async () => {
@@ -132,15 +135,19 @@ export default (props) => {
       },
       data: data,
     };
-    console.log();
+
     await axios(config)
       .then(function (response) {
         setOrder(response.data);
-        console.log(response.status);
+
+        // console.log(response.status);
+        if (response.status === 201) {
+          // navigate(`/order/${response.data._id}`);
+        }
       })
       .catch(function (error) {
         setOrderError(error.message);
-        console.log(orderError);
+        console.log(error);
       });
   };
 
@@ -271,6 +278,7 @@ export default (props) => {
         paymentMethod,
         placeOrder,
         orderError,
+        order,
       }}
       //   cartQuantity
     >
