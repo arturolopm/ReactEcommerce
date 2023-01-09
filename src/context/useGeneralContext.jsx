@@ -88,7 +88,6 @@ export default (props) => {
 
     setShippingAddress(newShippingAddress);
   };
-  console.log(shippingAddress);
   useEffect(() => {
     window.localStorage.setItem(
       "shippingAddress",
@@ -101,9 +100,6 @@ export default (props) => {
     setPaymentMethod(paymentMethodForm);
   };
 
-  // const sendCart = cartItems.map(
-
-  // );
   // Place Order
 
   const sendCart = cartItems.map((item) => ({
@@ -142,12 +138,42 @@ export default (props) => {
 
         // console.log(response.status);
         if (response.status === 201) {
-          // navigate(`/order/${response.data._id}`);
+          console.log(orderError);
+          setCartItems([]);
         }
       })
       .catch(function (error) {
         setOrderError(error.message);
-        console.log(error);
+        console.log(orderError);
+      });
+  };
+
+  // get Order Placed
+  const [orderPlaced, setOrderPlaced] = useState();
+  console.log(orderPlaced);
+  const [orderPlacedError, setOrderPlacedError] = useState();
+  const getOrderPlaced = async (id) => {
+    const config = {
+      method: "get",
+      url: `http://localhost:5000/api/orders/${id}`,
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    };
+
+    await axios(config)
+      .then(function (response) {
+        setOrderPlaced(response.data);
+
+        // console.log(response.status);
+        if (response.status === 201) {
+          setOrderPlacedError("");
+          return orderPlaced;
+        }
+      })
+      .catch(function (error) {
+        setOrderPlacedError(error.message);
+        console.log(orderPlacedError);
       });
   };
 
@@ -279,6 +305,8 @@ export default (props) => {
         placeOrder,
         orderError,
         order,
+        getOrderPlaced,
+        orderPlaced,
       }}
       //   cartQuantity
     >

@@ -16,9 +16,10 @@ import Home from "@/components/home/Home";
 import Footer from "@/components/footer/Footer";
 import RegisterForm from "@/components/forms/RegisterForm";
 import ProfileForm from "@/components/forms/ProfileForm";
-import ShippingForm from "@/components/forms/ShippingForm";
+import ShippingView from "@/components/cart/ShippingView";
 import PaymentForm from "@/components/forms/PaymentForm";
 import PlaceOrderForm from "@/components/forms/PlaceOrderForm";
+import OrderScreen from "@/components/order/OrderScreen";
 
 const App = () => {
   return (
@@ -51,7 +52,7 @@ const App = () => {
             />
             <Route
               path="/shipping"
-              element={[<IndexHeader />, <ShippingForm />]}
+              element={[<IndexHeader />, <ShippingView />]}
             />
             <Route
               path="/payment"
@@ -60,6 +61,10 @@ const App = () => {
             <Route
               path="/place-order"
               element={[<IndexHeader />, <PlaceOrderForm />]}
+            />
+            <Route
+              path="/order/:id"
+              element={[<IndexHeader />, <OrderScreen />]}
             />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

@@ -2,8 +2,6 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGeneralContext } from "@/context/useGeneralContext";
 
-import Home from "@/components/home/Home";
-
 const ShippingForm = () => {
   const { cartItems, saveShippingAddress, shippingAddress, user } =
     useContext(useGeneralContext);
