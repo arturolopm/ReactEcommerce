@@ -51,14 +51,9 @@ const CartInfoDetails = (props) => {
   return (
     <div className=" mx-auto flex max-w-5xl flex-col gap-4 md:flex-row">
       <div className=" mx-4 max-w-3xl rounded-md bg-white text-sm shadow-md md:w-3/5">
-        <h4 className=" px-6 py-2 text-lg font-bold ">Cart</h4>
+        <h4 className=" px-6 py-2 text-lg font-bold ">Items ordered</h4>
+        {orderPlacedError && <h2>{orderPlacedError}</h2>}
         <hr />
-        <div className=" text-left text-slate-500 ">
-          Delete all items
-          <button className=" mx-4" onClick={() => deleteAllCartItems([])}>
-            <DeleteIcon className="hover:fill-green-primary" />
-          </button>
-        </div>
 
         {itemsInOrder?.map((item) => (
           <article
@@ -86,12 +81,6 @@ const CartInfoDetails = (props) => {
                 </span>
               </div>
             </div>
-            <button
-              className=" ml-auto"
-              onClick={() => deleteCartItems(item?._id)}
-            >
-              <DeleteIcon className="hover:fill-green-primary" />
-            </button>
           </article>
         ))}
       </div>
