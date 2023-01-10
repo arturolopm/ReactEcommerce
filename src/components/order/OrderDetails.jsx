@@ -64,7 +64,7 @@ const OrderDetails = () => {
         <div>Order Info</div>
         <p>Shipping: {orderInfoDetails?.shippingAddress?.country}</p>
         <p>Payment Method: {orderInfoDetails?.paymentMethod}</p>
-        {orderInfoDetails.isPaid ? (
+        {orderInfoDetails?.isPaid ? (
           <p className=" font-bold text-green-primary">Paid</p>
         ) : (
           <p className=" font-bold text-red-600">Not Paid</p>
@@ -77,7 +77,7 @@ const OrderDetails = () => {
         <div>Deliver to</div>
         <p>{orderInfoDetails?.shippingAddress?.address}</p>
         <p>{orderInfoDetails?.shippingAddress?.city}</p>
-        {orderInfoDetails.isDelivered ? (
+        {orderInfoDetails?.isDelivered ? (
           <p className=" font-bold text-green-primary">Delivered</p>
         ) : (
           <p className=" font-bold text-red-600">Not delivered yet</p>
