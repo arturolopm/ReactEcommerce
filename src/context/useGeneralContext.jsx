@@ -148,33 +148,41 @@ export default (props) => {
       });
   };
 
-  // get Order Placed
-  const [orderPlaced, setOrderPlaced] = useState();
-  console.log(orderPlaced);
-  const [orderPlacedError, setOrderPlacedError] = useState();
-  const getOrderPlaced = async (id) => {
+  // pay order
+
+  const payOrder = async (orderId, paymentResult) => {
+    const data = JSON.stringify({
+      orderItems: sendCart,
+      shippingAddress: shippingAddress,
+      // isPaid: paymentResult,
+      paymentMethod: paymentMethod,
+      itemsPrice: totalPrice,
+      taxprice: totalPrice * 0.15,
+      shippingPrice: totalPrice > 50 ? 0 : 15,
+      totalPrice: totalPrice + (totalPrice > 50 ? 0 : 15) + totalPrice * 0.15,
+    });
     const config = {
-      method: "get",
-      url: `http://localhost:5000/api/orders/${id}`,
+      method: "put",
+      url: `http://localhost:5000/api/orders/${orderId}/pay`,
+
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${user.token}`,
       },
+      data: paymentResult,
     };
 
-    await axios(config)
-      .then(function (response) {
-        setOrderPlaced(response.data);
-
-        // console.log(response.status);
-        if (response.status === 201) {
-          setOrderPlacedError("");
-          return orderPlaced;
-        }
-      })
-      .catch(function (error) {
-        setOrderPlacedError(error.message);
-        console.log(orderPlacedError);
+    await axios(config);
+    try {
+      (function (response) {
+        setOrder(...order, (order.isPaid = response.data.isPaid));
       });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+    }
   };
 
   // Login User
@@ -305,8 +313,8 @@ export default (props) => {
         placeOrder,
         orderError,
         order,
-        getOrderPlaced,
-        orderPlaced,
+        // getOrderPlaced,
+        // orderPlaced,
       }}
       //   cartQuantity
     >

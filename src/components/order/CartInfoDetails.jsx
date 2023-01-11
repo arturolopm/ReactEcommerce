@@ -1,45 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { useGeneralContext } from "@/context/useGeneralContext";
-import axios from "axios";
 
-import { useParams } from "react-router-dom";
-import DeleteIcon from "@/components/icons/DeleteIcon";
 import { Link } from "react-router-dom";
-const CartInfoDetails = (props) => {
-  const { user } = useContext(useGeneralContext);
-  const { id } = useParams();
-  // get Order Placed
-  const [orderPlaced, setOrderPlaced] = useState();
-  console.log(orderPlaced);
-  const [orderPlacedError, setOrderPlacedError] = useState();
-  const getOrderPlaced = async (id) => {
-    const config = {
-      method: "get",
-      url: `http://localhost:5000/api/orders/${id}`,
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    };
-
-    await axios(config)
-      .then(function (response) {
-        setOrderPlaced(response.data);
-
-        // console.log(response.status);
-        if (response.status === 201) {
-          setOrderPlacedError("");
-        }
-      })
-      .catch(function (error) {
-        setOrderPlacedError(error.message);
-        console.log(orderPlacedError);
-      });
-  };
-  useEffect(() => {
-    getOrderPlaced(id);
-    console.log(id);
-  }, [id]);
-
+const CartInfoDetails = ({ orderPlaced, orderPlacedError }) => {
   const [itemsInOrder, setItemsInOrder] = useState();
   const getItemsInOrder = async () => {
     await setItemsInOrder(orderPlaced.orderItems);
