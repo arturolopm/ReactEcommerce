@@ -313,6 +313,7 @@ export default (props) => {
         placeOrder,
         orderError,
         order,
+        payOrder,
         // getOrderPlaced,
         // orderPlaced,
       }}

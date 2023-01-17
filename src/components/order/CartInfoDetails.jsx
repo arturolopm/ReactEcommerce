@@ -1,14 +1,38 @@
-import { useContext, useEffect, useState } from "react";
-
+import { useEffect, useState, useContext } from "react";
+import { useGeneralContext } from "@/context/useGeneralContext";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { Link } from "react-router-dom";
-const CartInfoDetails = ({ orderPlaced, orderPlacedError }) => {
+import axios from "axios";
+
+const CartInfoDetails = ({ orderPlaced, orderPlacedError, id }) => {
   const [itemsInOrder, setItemsInOrder] = useState();
   const getItemsInOrder = async () => {
-    await setItemsInOrder(orderPlaced.orderItems);
+    await setItemsInOrder(orderPlaced?.orderItems);
   };
   useEffect(() => {
     getItemsInOrder();
   }, [orderPlaced]);
+
+  const { payOrder } = useContext(useGeneralContext);
+  // const [sdkReady, setSdkReady] = useState(false);
+  // useEffect(() => {
+  const [clientId, setClientId] = useState();
+  const addPayPalScript = async () => {
+    const { data: getClientId } = await axios.get("/api/config/paypal");
+    setClientId(getClientId);
+  };
+  useEffect(() => {
+    addPayPalScript();
+    orderPlaced
+      ? (orderPlaced.pricetoPaypal = orderPlaced.totalPrice.toFixed(2))
+      : "";
+    console.log(orderPlaced?.totalPrice);
+  }, [orderPlaced]);
+
+  addPayPalScript();
+  const successPaymentHandler = () => {
+    payOrder(id);
+  };
 
   return (
     <div className=" mx-auto flex max-w-5xl flex-col gap-4 md:flex-row">
@@ -67,13 +91,34 @@ const CartInfoDetails = ({ orderPlaced, orderPlacedError }) => {
             </tr>
           </tbody>
         </table>
-
-        <button
-          // onClick={HandleGetOrder}
-          className=" w-full rounded-md bg-green-primary py-4 text-white transition-all hover:bg-green-700"
-        >
-          Place Order
-        </button>
+        {clientId && (
+          <div>
+            {!orderPlaced?.isPaid && (
+              <PayPalScriptProvider options={{ "client-id": clientId }}>
+                <PayPalButtons
+                  createOrder={(data, actions) => {
+                    return actions.order.create({
+                      purchase_units: [
+                        {
+                          amount: {
+                            value: orderPlaced.pricetoPaypal,
+                          },
+                        },
+                      ],
+                    });
+                  }}
+                  onApprove={async (data, actions) => {
+                    successPaymentHandler();
+                    const details = await actions.order.capture();
+                    const name = details.payer.name.given_name;
+                    alert("Transaction completed by " + name);
+                  }}
+                  style={{ layout: "horizontal" }}
+                />
+              </PayPalScriptProvider>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

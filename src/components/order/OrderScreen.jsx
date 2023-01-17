@@ -3,12 +3,10 @@ import { useGeneralContext } from "@/context/useGeneralContext";
 import axios from "axios";
 
 import { useParams } from "react-router-dom";
-
 import OrderDetails from "@/components/order/OrderDetails";
 import CartInfoDetails from "@/components/order/CartInfoDetails";
 
 const OrderScreen = () => {
-  const [sdkReady, setSdkReady] = useState(false);
   const { user } = useContext(useGeneralContext);
   const { id } = useParams();
   // get Order Placed
@@ -40,8 +38,8 @@ const OrderScreen = () => {
   };
   useEffect(() => {
     getOrderPlaced(id);
-    console.log(id);
   }, [id]);
+
   return (
     <>
       <OrderDetails
@@ -51,6 +49,7 @@ const OrderScreen = () => {
       <CartInfoDetails
         orderPlaced={orderPlaced}
         orderPlacedError={orderPlacedError}
+        id={id}
       />
     </>
   );
