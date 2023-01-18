@@ -13,7 +13,7 @@ const CartInfoDetails = ({
   getOrderPaid,
   setGetOrderPaid,
 }) => {
-  const { payOrder } = useContext(useGeneralContext);
+  const { payOrder, setOrder } = useContext(useGeneralContext);
   const [itemsInOrder, setItemsInOrder] = useState();
   const getItemsInOrder = async () => {
     await setItemsInOrder(orderPlaced?.orderItems);
@@ -37,13 +37,12 @@ const CartInfoDetails = ({
       priceExist ? setPriceToPaypal(orderPlaced.totalPrice.toFixed(2)) : "";
     }
   }, [orderPlaced]);
-  // addPayPalScript();
-  // newPriceToPaypal();
 
   const successPaymentHandler = () => {
     payOrder(id);
     setGetOrderPaid(!getOrderPaid);
     Swal.fire("Order Processed!", "Your order is on its way!", "success");
+    setOrder();
   };
   const [showButtons, setShowButtons] = useState();
 

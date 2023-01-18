@@ -18,7 +18,7 @@ const ShippingForm = () => {
   const submitHandler = (event) => {
     event.preventDefault();
     saveShippingAddress({ address, city, postalCode, state, country, email });
-    navigate("/payment");
+    navigate("/place-order");
   };
 
   return (
