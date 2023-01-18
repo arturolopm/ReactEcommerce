@@ -46,7 +46,7 @@ const OrderDetails = ({ orderPlaced }) => {
         {orderInfoDetails?.isDelivered ? (
           <p className=" font-bold text-green-primary">Delivered</p>
         ) : (
-          <p className=" font-bold text-red-600">Not delivered yet</p>
+          <p className=" font-bold ">Not delivered yet</p>
         )}
       </div>
     </section>
