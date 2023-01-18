@@ -4,40 +4,87 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const CartInfoDetails = ({ orderPlaced, orderPlacedError, id }) => {
+const CartInfoDetails = ({
+  orderPlaced,
+  setOrderPlaced,
+  orderPlacedError,
+  id,
+  getOrderPaid,
+  setGetOrderPaid,
+}) => {
+  const { payOrder } = useContext(useGeneralContext);
   const [itemsInOrder, setItemsInOrder] = useState();
   const getItemsInOrder = async () => {
     await setItemsInOrder(orderPlaced?.orderItems);
   };
-  useEffect(() => {
-    getItemsInOrder();
-  }, [orderPlaced]);
 
-  const { payOrder } = useContext(useGeneralContext);
-  // const [sdkReady, setSdkReady] = useState(false);
-  // useEffect(() => {
   const [clientId, setClientId] = useState();
   const addPayPalScript = async () => {
     const { data: getClientId } = await axios.get("/api/config/paypal");
     setClientId(getClientId);
   };
+
   useEffect(() => {
     addPayPalScript();
-    orderPlaced
-      ? (orderPlaced.pricetoPaypal = orderPlaced.totalPrice.toFixed(2))
-      : "";
-    console.log(orderPlaced?.totalPrice);
-  }, [orderPlaced]);
+  }, []);
+  const [priceToPaypal, setPriceToPaypal] = useState();
 
-  addPayPalScript();
+  useEffect(() => {
+    getItemsInOrder();
+    if (orderPlaced) {
+      const priceExist = "totalPrice" in orderPlaced;
+      priceExist ? setPriceToPaypal(orderPlaced.totalPrice.toFixed(2)) : "";
+    }
+  }, [orderPlaced]);
+  // addPayPalScript();
+  // newPriceToPaypal();
+
   const successPaymentHandler = () => {
     payOrder(id);
+    setGetOrderPaid(!getOrderPaid);
   };
+  const [showButtons, setShowButtons] = useState();
+
+  useEffect(() => {
+    if (priceToPaypal === undefined) {
+      setShowButtons(<div>loading</div>);
+    } else {
+      setShowButtons(
+        <PayPalButtons
+          createOrder={(data, actions) => {
+            return actions.order.create({
+              purchase_units: [
+                {
+                  amount: {
+                    value: `${priceToPaypal}`,
+                  },
+                },
+              ],
+            });
+          }}
+          onApprove={async (data, actions) => {
+            const details = await actions.order.capture();
+            const name = details.payer.name.given_name;
+            alert("Transaction completed by " + name);
+            successPaymentHandler();
+          }}
+          style={{ layout: "vertical" }}
+        />
+      );
+    }
+  }, [priceToPaypal]);
 
   return (
     <div className=" mx-auto flex max-w-5xl flex-col gap-4 md:flex-row">
       <div className=" mx-4 max-w-3xl rounded-md bg-white text-sm shadow-md md:w-3/5">
         <h4 className=" px-6 py-2 text-lg font-bold ">Items ordered</h4>
+        {orderPlaced?.isPaid ? (
+          <p className=" text-base font-bold text-green-primary">
+            Your order is on its way!
+          </p>
+        ) : (
+          ""
+        )}
         {orderPlacedError && <h2>{orderPlacedError}</h2>}
         <hr />
 
@@ -95,26 +142,7 @@ const CartInfoDetails = ({ orderPlaced, orderPlacedError, id }) => {
           <div>
             {!orderPlaced?.isPaid && (
               <PayPalScriptProvider options={{ "client-id": clientId }}>
-                <PayPalButtons
-                  createOrder={(data, actions) => {
-                    return actions.order.create({
-                      purchase_units: [
-                        {
-                          amount: {
-                            value: orderPlaced.pricetoPaypal,
-                          },
-                        },
-                      ],
-                    });
-                  }}
-                  onApprove={async (data, actions) => {
-                    successPaymentHandler();
-                    const details = await actions.order.capture();
-                    const name = details.payer.name.given_name;
-                    alert("Transaction completed by " + name);
-                  }}
-                  style={{ layout: "horizontal" }}
-                />
+                {showButtons}
               </PayPalScriptProvider>
             )}
           </div>

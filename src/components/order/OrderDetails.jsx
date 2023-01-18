@@ -31,7 +31,7 @@ const OrderDetails = ({ orderPlaced }) => {
         <p>Shipping: {orderInfoDetails?.shippingAddress?.country}</p>
         <p>Payment Method: {orderInfoDetails?.paymentMethod}</p>
         {orderInfoDetails?.isPaid ? (
-          <p className=" font-bold text-green-primary">Paid</p>
+          <p className=" text-base font-bold text-green-primary">Paid</p>
         ) : (
           <p className=" font-bold text-red-600">Not Paid</p>
         )}

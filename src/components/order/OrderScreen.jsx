@@ -40,6 +40,14 @@ const OrderScreen = () => {
     getOrderPlaced(id);
   }, [id]);
 
+  const [getOrderPaid, setGetOrderPaid] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      getOrderPlaced(id);
+    }, 500);
+  }, [getOrderPaid]);
+
   return (
     <>
       <OrderDetails
@@ -48,8 +56,11 @@ const OrderScreen = () => {
       />
       <CartInfoDetails
         orderPlaced={orderPlaced}
+        setOrderPlaced={setOrderPlaced}
         orderPlacedError={orderPlacedError}
         id={id}
+        getOrderPaid={getOrderPaid}
+        setGetOrderPaid={setGetOrderPaid}
       />
     </>
   );
