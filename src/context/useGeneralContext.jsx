@@ -333,22 +333,6 @@ export default (props) => {
       .then(function (response) {
         setUser(response.data);
         setUpdateProfileError("");
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-          },
-        });
-
-        Toast.fire({
-          icon: "success",
-          title: "Profile updated",
-        });
       })
       .catch(function (error) {
         setUpdateProfileError(error.message);

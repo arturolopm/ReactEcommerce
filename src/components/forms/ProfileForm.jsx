@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import { useGeneralContext } from "@/context/useGeneralContext";
-
+import Swal from "sweetalert2";
 import LoginView from "@/components/forms/LoginView";
 
 const ProfileForm = () => {
@@ -21,10 +20,22 @@ const ProfileForm = () => {
     if (password !== passwordConfirmation) {
       // Check if passwords match
       setPasswordError("Passwords do not match"); // Set password error if passwords do not match
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Passwords do not match!",
+      });
     } else {
       // Validate the form values and create the new user account
       setPasswordError(""); // Reset password error if passwords match
       updateProfile({ name, email, password });
+      setPassword("");
+      setPasswordConfirmation("");
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Profile updated!",
+      });
     }
   };
 
@@ -86,7 +97,7 @@ const ProfileForm = () => {
 
             {/* Password input field */}
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
-              Password
+              New Password
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
@@ -98,7 +109,7 @@ const ProfileForm = () => {
             />
             {/* Password confirmation input field */}
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
-              Confirm Password
+              Confirm new Password
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
