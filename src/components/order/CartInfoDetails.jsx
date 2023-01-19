@@ -69,7 +69,7 @@ const CartInfoDetails = ({
             // alert("Transaction completed by " + name);
 
             successPaymentHandler();
-            actions.redirect(`/${orderPlaced._id}`);
+            // actions.redirect(`/${orderPlaced._id}`);
           }}
           style={{ layout: "vertical", shape: "rect" }}
         />

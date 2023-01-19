@@ -1,12 +1,13 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export const useGeneralContext = createContext();
 
 export default (props) => {
   const cartFromStorage = JSON.parse(window.localStorage.getItem("cart")) || [];
   const [cartItems, setCartItems] = useState(cartFromStorage);
-  console.log(cartItems);
+
   useEffect(() => {
     const cart = window.localStorage.getItem("cart");
     if (cart !== null) setCartItems(JSON.parse(cart));
@@ -18,6 +19,18 @@ export default (props) => {
 
   const addCartItems = (item) => {
     if (cartItems.length === 0) {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+      });
+
+      Toast.fire({
+        icon: "success",
+        title: "Item added",
+      });
       return setCartItems([item]);
     }
     const newCartItems = [...cartItems];
@@ -36,6 +49,18 @@ export default (props) => {
       newCartItems.push(item);
     }
     setCartItems(newCartItems);
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+    });
+
+    Toast.fire({
+      icon: "success",
+      title: "Item added",
+    });
   };
   const deleteAllCartItems = () => {
     return setCartItems([]);
@@ -46,7 +71,8 @@ export default (props) => {
     0
   );
   const totalPrice = cartItems.reduce(
-    (acc, current) => current.quantity * current.price + acc,
+    (acc, current) =>
+      current.quantity * current.price * (1 - current.discount) + acc,
     0
   );
 
@@ -136,15 +162,12 @@ export default (props) => {
       .then(function (response) {
         setOrder(response.data);
 
-        // console.log(response.status);
         if (response.status === 201) {
-          console.log(orderError);
           setCartItems([]);
         }
       })
       .catch(function (error) {
         setOrderError(error.message);
-        console.log(orderError);
       });
   };
 
@@ -189,7 +212,6 @@ export default (props) => {
   const initialUser = JSON.parse(window.localStorage.getItem("user"));
 
   const [user, setUser] = useState(initialUser);
-  console.log(user);
   useEffect(() => {
     const newUser = window.localStorage.getItem("user");
     if (newUser !== null) setUser(JSON.parse(newUser));
@@ -244,13 +266,27 @@ export default (props) => {
     await axios(config)
       .then(function (response) {
         setUser(response.data);
-        setRegisterError("User succesfully registered");
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "User succesfullly registered",
+        });
       })
       .catch(function (error) {
         setRegisterError(
           "Email already exist, please login instead of register"
         );
-        console.log(error.message);
       });
     setTimeout(() => setRegisterError(""), 3000);
   };
@@ -275,11 +311,26 @@ export default (props) => {
     axios(config)
       .then(function (response) {
         setUser(response.data);
-        setUpdateProfileError("Profile Updated");
+        setUpdateProfileError("");
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Profile updated",
+        });
       })
       .catch(function (error) {
         setUpdateProfileError(error.message);
-        console.log(error.message);
       });
     setTimeout(() => setUpdateProfileError(""), 3000);
   };
