@@ -20,6 +20,7 @@ import ShippingView from "@/components/cart/ShippingView";
 import PaymentForm from "@/components/forms/PaymentForm";
 import PlaceOrderForm from "@/components/forms/PlaceOrderForm";
 import OrderScreen from "@/components/order/OrderScreen";
+import OrderList from "@/components/profile/OrderList";
 
 const App = () => {
   return (
@@ -66,6 +67,8 @@ const App = () => {
               path="/order/:id"
               element={[<IndexHeader />, <OrderScreen />]}
             />
+            <Route path="/order" element={[<IndexHeader />, <OrderList />]} />
+
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Router>

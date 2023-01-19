@@ -208,6 +208,27 @@ export default (props) => {
     }
   };
 
+  // Get user order's list
+  const [orderListed, setOrderListed] = useState();
+  console.log(orderListed);
+  const getOrderListed = async () => {
+    const config = {
+      method: "get",
+      url: "http://localhost:5000/api/orders/",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    };
+
+    axios(config)
+      .then(function (response) {
+        setOrderListed(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   // Login User
   const initialUser = JSON.parse(window.localStorage.getItem("user"));
 
@@ -366,6 +387,8 @@ export default (props) => {
         order,
         setOrder,
         payOrder,
+        orderListed,
+        getOrderListed,
         // getOrderPlaced,
         // orderPlaced,
       }}
