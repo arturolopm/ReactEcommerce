@@ -47,6 +47,7 @@ const ShippingForm = () => {
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
               type="text"
               placeholder="Address"
+              required
               value={address}
               onChange={(event) => setAddress(event.target.value)}
             />
@@ -59,6 +60,7 @@ const ShippingForm = () => {
               type="text"
               placeholder="City"
               value={city}
+              required
               onChange={(event) => setCity(event.target.value)}
             />
 
@@ -82,6 +84,7 @@ const ShippingForm = () => {
               type="text"
               placeholder="State"
               value={state}
+              required
               onChange={(event) => setState(event.target.value)}
             />
             {/* country input field */}
@@ -93,6 +96,7 @@ const ShippingForm = () => {
               type="text"
               placeholder="Country"
               value={country}
+              required
               onChange={(event) => setCountry(event.target.value)}
             />
 
@@ -105,6 +109,7 @@ const ShippingForm = () => {
               type="email"
               placeholder="email"
               value={email}
+              required
               onChange={(event) => setEmail(event.target.value)}
             />
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">

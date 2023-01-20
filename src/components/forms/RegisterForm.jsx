@@ -1,11 +1,14 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useGeneralContext } from "@/context/useGeneralContext";
+import { useNavigate } from "react-router-dom";
 // Import the LoggedView component
 import LoggedView from "@/components/header/LoggedView";
 
 const RegisterForm = () => {
-  const { register, user, registerError } = useContext(useGeneralContext);
+  const navigate = useNavigate();
+  const { register, user, registerError, cartItems } =
+    useContext(useGeneralContext);
   // Use the useState hook to manage the name, email, password, and passwordConfirmation state
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

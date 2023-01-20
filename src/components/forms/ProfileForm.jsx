@@ -31,11 +31,6 @@ const ProfileForm = () => {
       updateProfile({ name, email, password });
       setPassword("");
       setPasswordConfirmation("");
-      Swal.fire({
-        icon: "success",
-        title: "Success",
-        text: "Profile updated!",
-      });
     }
   };
 

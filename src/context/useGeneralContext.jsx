@@ -77,7 +77,19 @@ export default (props) => {
   );
 
   const deleteCartItems = (_id) => {
-    setCartItems(cartItems.filter((product) => product._id !== _id));
+    let newCartItems = [...cartItems];
+
+    for (let i = 0; i < newCartItems.length; i++) {
+      if (newCartItems[i]._id === _id) {
+        newCartItems[i].quantity -= 1;
+        if (newCartItems[i].quantity <= 0) {
+          newCartItems = newCartItems.filter((product) => product._id !== _id);
+        }
+        break;
+      }
+    }
+
+    setCartItems(newCartItems);
   };
 
   // Save Shipping Address
@@ -287,21 +299,10 @@ export default (props) => {
     await axios(config)
       .then(function (response) {
         setUser(response.data);
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-          },
-        });
-
-        Toast.fire({
+        Swal.fire({
           icon: "success",
-          title: "User succesfullly registered",
+          title: "Success",
+          text: "Succesfully registered!",
         });
       })
       .catch(function (error) {
@@ -333,6 +334,11 @@ export default (props) => {
       .then(function (response) {
         setUser(response.data);
         setUpdateProfileError("");
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Profile updated!",
+        });
       })
       .catch(function (error) {
         setUpdateProfileError(error.message);

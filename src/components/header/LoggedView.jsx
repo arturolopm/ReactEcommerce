@@ -2,15 +2,24 @@ import { useContext } from "react";
 import { useGeneralContext } from "@/context/useGeneralContext";
 import { Link } from "react-router-dom";
 const LoggedView = () => {
-  const { logOut, user } = useContext(useGeneralContext);
+  const { logOut, user, cartItems } = useContext(useGeneralContext);
 
   return (
     <>
       <h1 className=" mb-3 text-lg font-bold text-green-primary">
         {user?.name}
       </h1>
+      {cartItems.length > 0 && (
+        <Link
+          to="/shipping"
+          className=" group relative mb-2 border-2 border-dashed text-base font-bold text-green-primary"
+        >
+          Click here to finish your purchase!
+          <span className=" absolute bottom-0 mb-1 block h-[1px] w-full scale-x-0 pr-2 transition-all duration-200 group-hover:scale-x-100 group-hover:bg-green-primary"></span>
+        </Link>
+      )}
       <Link to="/home" className="group relative hover:text-green-primary">
-        Home, products
+        Home
         <span className=" absolute bottom-0 mb-1 block h-[1px] w-full scale-x-0 transition-all duration-200 group-hover:scale-x-100 group-hover:bg-green-primary"></span>
       </Link>
       <Link to="/order" className=" group relative hover:text-green-primary">
@@ -22,6 +31,14 @@ const LoggedView = () => {
         <span className=" absolute bottom-0 mb-1 block h-[1px] w-full scale-x-0 transition-all duration-200 group-hover:scale-x-100 group-hover:bg-green-primary"></span>
       </Link>
       <form action="login" method="post"></form>
+
+      <Link
+        to="/home"
+        className=" group relative my-2 border-2 border-dashed text-base font-bold text-green-primary"
+      >
+        See more products!
+        <span className=" absolute bottom-0 mb-1 block h-[1px] w-full scale-x-0 pr-2 transition-all duration-200 group-hover:scale-x-100 group-hover:bg-green-primary"></span>
+      </Link>
 
       <div className=" text-right">
         <Link to="/login">
