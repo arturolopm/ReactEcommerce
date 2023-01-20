@@ -8,6 +8,9 @@ import GalleryProductsHome from "@/components/home/productsHome/GalleryProductsH
 import PaginationButtons from "@/components/pagination/PaginationButtons";
 
 const Home = () => {
+  if (window.scrollY) {
+    window.scroll(0, 0);
+  }
   const params = useParams();
   const [keyword, setKeyword] = useState(params.keyword);
   console.log(params);

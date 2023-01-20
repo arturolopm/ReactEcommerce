@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
+import { RxDoubleArrowUp } from "react-icons/rx";
 
 import { Link } from "react-router-dom";
 import logoJade from "@/assets/images/logo.svg";
@@ -17,6 +18,9 @@ const IndexHeader = () => {
   };
   const handleOpenMenu = () => {
     setIsOpenMenu(true);
+  };
+  const handleScrollUp = () => {
+    window.scroll(0, 0);
   };
   return (
     <div>
@@ -52,6 +56,13 @@ const IndexHeader = () => {
         <a href="https://wa.me/573114483981?text=I'm%20interested%20in%20your%20Jade%20figures">
           <FaWhatsapp />
         </a>
+      </div>
+
+      <div
+        onClick={handleScrollUp}
+        className=" fixed bottom-20 right-5 z-50  text-5xl text-slate-500"
+      >
+        <RxDoubleArrowUp />
       </div>
     </div>
   );
