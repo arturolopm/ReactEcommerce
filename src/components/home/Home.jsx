@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import DetailsProductHome from "@/components/home/cartProductHome/DetailsProductHome";
 
 import GalleryProductsHome from "@/components/home/productsHome/GalleryProductsHome";
+import PaginationButtons from "@/components/pagination/PaginationButtons";
 
 const Home = () => {
   const params = useParams();
@@ -17,20 +18,23 @@ const Home = () => {
   const [pageNumber, setPageNumber] = useState(params.pagenumber);
   console.log(pageNumber);
   const [products, setProducts] = useState([]);
+  const [pages, setPages] = useState(1);
 
   useEffect(
     () => {
       const fetchProducts = async () => {
+        setPageNumber(parseInt(params.pagenumber));
         const { data } = await axios.get(
           `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
         );
         console.log(keyword);
         console.log(data);
         setProducts(data.products);
+        setPages(parseInt(data.pages));
       };
       fetchProducts();
     },
-    [keyword],
+    [keyword, pages, pageNumber],
     []
   );
 
@@ -55,6 +59,14 @@ const Home = () => {
           <span className="container mx-auto mb-2 block h-[1px] w-full bg-gray-300"></span>
         </div>
       ))}
+      <div className=" flex justify-center">
+        <PaginationButtons
+          pages={pages}
+          pageNumber={pageNumber}
+          keyword={keyword}
+          setPageNumber={setPageNumber}
+        />
+      </div>
     </section>
   );
 };
