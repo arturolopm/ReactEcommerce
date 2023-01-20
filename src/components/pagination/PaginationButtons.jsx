@@ -16,17 +16,17 @@ const PaginationButtons = ({ pages, pageNumber, keyword, setPageNumber }) => {
                 }`}
                 key={x + 1}
               >
-                <li onClick={() => setPageNumber(x + 1)} className="  p-2">
-                  <Link
-                    to={
-                      keyword
-                        ? `/search/${keyword}/page/${x + 1}`
-                        : `/page/${x + 1}`
-                    }
-                  >
-                    {x + 1}
-                  </Link>
-                </li>
+                <Link
+                  to={
+                    keyword
+                      ? `/search/${keyword}/page/${x + 1}`
+                      : `/page/${x + 1}`
+                  }
+                  onClick={() => setPageNumber(x + 1)}
+                  className="  p-2"
+                >
+                  {x + 1}
+                </Link>
               </div>
             ))}
           </ul>

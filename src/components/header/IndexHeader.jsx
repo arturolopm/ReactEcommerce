@@ -60,7 +60,7 @@ const IndexHeader = () => {
 
       <div
         onClick={handleScrollUp}
-        className=" fixed bottom-20 right-5 z-50  text-5xl text-slate-500"
+        className=" fixed bottom-20 right-5 z-50 hidden  text-5xl text-slate-500 md:block"
       >
         <RxDoubleArrowUp />
       </div>
