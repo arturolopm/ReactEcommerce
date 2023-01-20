@@ -21,6 +21,7 @@ import PaymentForm from "@/components/forms/PaymentForm";
 import PlaceOrderForm from "@/components/forms/PlaceOrderForm";
 import OrderScreen from "@/components/order/OrderScreen";
 import OrderList from "@/components/profile/OrderList";
+import SearchView from "@/components/home/SearchView";
 
 const App = () => {
   return (
@@ -33,9 +34,13 @@ const App = () => {
                 path={multiplePath}
                 element={[<IndexHeader />, <Home />]}
                 key={index}
+                exact
               />
             ))}
-
+            <Route
+              path="/search/:keyword"
+              element={[<IndexHeader />, <SearchView />]}
+            />
             <Route
               path="/products/:_id"
               element={[<IndexHeader />, <IndexProducts />]}
@@ -47,6 +52,7 @@ const App = () => {
               path="/register"
               element={[<IndexHeader />, <RegisterForm />]}
             />
+
             <Route
               path="/profile"
               element={[<IndexHeader />, <ProfileForm />]}

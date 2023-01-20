@@ -8,9 +8,13 @@ import MenuIcon from "@/components/icons/MenuIcon";
 import CartHeader from "@/components/header/CartHeader";
 import ProfileMenu from "@/components/header/ProfileMenu";
 import NavLinks from "@/components/header/NavLinks";
-
+import SearchProduct from "@/components/header/SearchProduct";
 const IndexHeader = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [showLogo, setShowLogo] = useState(true);
+  const handleShowLogo = () => {
+    window.innerWidth < 768 ? setShowLogo(!showLogo) : "";
+  };
   const handleOpenMenu = () => {
     setIsOpenMenu(true);
   };
@@ -23,14 +27,21 @@ const IndexHeader = () => {
         >
           <MenuIcon />
         </button>
-        <Link to="/">
-          <img
-            className=" mx-4 mr-auto mb-1 h-10 md:mr-5"
-            src={logoJade}
-            alt="Logo Jade"
-          />
-        </Link>
-        <NavLinks isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
+        {showLogo && (
+          <Link to="/">
+            <img
+              className=" mx-4 mr-auto mb-1 h-10 md:mr-5"
+              src={logoJade}
+              alt="Logo Jade"
+            />
+          </Link>
+        )}
+        {showLogo && (
+          <NavLinks isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
+        )}
+        <div className=" right-0 w-[25%] text-base text-very-dark-blue">
+          <SearchProduct handleShowLogo={handleShowLogo} />
+        </div>
         <div className=" ml-auto flex gap-4">
           <CartHeader />
           <ProfileMenu />
