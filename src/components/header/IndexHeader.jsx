@@ -36,9 +36,9 @@ const IndexHeader = () => {
             />
           </Link>
         )}
-        {showLogo && (
-          <NavLinks isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
-        )}
+
+        <NavLinks isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
+
         <div className=" right-0 w-[25%] text-base text-very-dark-blue">
           <SearchProduct handleShowLogo={handleShowLogo} />
         </div>

@@ -21,7 +21,6 @@ import PaymentForm from "@/components/forms/PaymentForm";
 import PlaceOrderForm from "@/components/forms/PlaceOrderForm";
 import OrderScreen from "@/components/order/OrderScreen";
 import OrderList from "@/components/profile/OrderList";
-import SearchView from "@/components/home/SearchView";
 
 const App = () => {
   return (
@@ -29,7 +28,14 @@ const App = () => {
       <GeneralContextProvider>
         <Router>
           <Routes>
-            {["/", "/home"].map((multiplePath, index) => (
+            {[
+              "/",
+              "/home",
+              "/search",
+              "/search/:keyword",
+              "/page/:pagenumber",
+              "/search/:keyword/page/:pagenumber",
+            ].map((multiplePath, index) => (
               <Route
                 path={multiplePath}
                 element={[<IndexHeader />, <Home />]}
@@ -37,10 +43,7 @@ const App = () => {
                 exact
               />
             ))}
-            <Route
-              path="/search/:keyword"
-              element={[<IndexHeader />, <SearchView />]}
-            />
+
             <Route
               path="/products/:_id"
               element={[<IndexHeader />, <IndexProducts />]}

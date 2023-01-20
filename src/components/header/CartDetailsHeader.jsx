@@ -13,7 +13,7 @@ const CartDetailsHeader = (props) => {
       <div className=" mx-4 rounded-md bg-white shadow-md">
         <h4 className=" px-6 py-2 text-lg font-bold ">Cart</h4>
         <hr />
-        <div className=" text-left text-slate-500 ">
+        <div className=" ml-2 text-left text-slate-500 ">
           Delete all items
           <button className=" mx-4" onClick={() => deleteAllCartItems([])}>
             <DeleteIcon className="hover:fill-green-primary" />
