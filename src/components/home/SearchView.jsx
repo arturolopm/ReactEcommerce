@@ -12,7 +12,7 @@ const SearchView = () => {
 
   useEffect(() => {
     setKeyword(keywordFromParams.keyword);
-  }, []);
+  }, [keywordFromParams]);
 
   const [products, setProducts] = useState([]);
 
@@ -24,7 +24,7 @@ const SearchView = () => {
       setProducts(data);
     };
     fetchProducts();
-  }, []);
+  }, [keyword]);
 
   return (
     <section className=" mx-auto min-h-screen max-w-7xl bg-white px-4 md:text-base">

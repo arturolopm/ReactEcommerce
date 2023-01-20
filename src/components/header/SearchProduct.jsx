@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const SearchProduct = ({ handleShowLogo }) => {
   const navigate = useNavigate();
-  const [keyWord, setKeyWord] = useState();
+  const [keyWord, setKeyWord] = useState("");
   const [showInput, setShowInput] = useState(false);
   const [showButton, setShowButton] = useState(true);
   useEffect(() => {
@@ -20,27 +20,30 @@ const SearchProduct = ({ handleShowLogo }) => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    if (keyWord.trim()) {
-      navigate(`search/${keyWord}`);
+
+    if (keyWord) {
+      navigate(`/search/${keyWord}`);
+      // setKeyWord("");
     } else {
       navigate("/home");
     }
   };
   return (
-    <form className=" ml-auto flex text-right " onSubmit={submitHandler}>
-      <label className=" ml-auto flex text-right ">
+    <form className="ml-auto flex text-right" onSubmit={submitHandler}>
+      <label className="ml-auto flex text-right">
         {showInput && (
           <input
-            className={`${show}`}
+            className="m-0 p-1"
             type="search"
             placeholder="Search"
+            value={keyWord}
             onChange={(e) => setKeyWord(e.target.value)}
           />
         )}
         {showButton && (
           <button
             onClick={show}
-            className=" ml-auto w-full text-end text-xl"
+            className="ml-auto w-full text-end text-xl"
             type="submit"
           >
             <MdSearch />
@@ -50,5 +53,4 @@ const SearchProduct = ({ handleShowLogo }) => {
     </form>
   );
 };
-
 export default SearchProduct;
