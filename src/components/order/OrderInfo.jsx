@@ -21,7 +21,7 @@ const OrderInfo = () => {
         </div>
         <div>Order Info</div>
         <p>Shippig: {shippingAddress.country}</p>
-        <p>Payment Method: {paymentMethod}</p>
+        {/* <p>Payment Method: {paymentMethod}</p> */}
       </div>
       <div className=" mx-auto">
         <div className=" text-3xl text-green-primary">
