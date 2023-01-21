@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 const PaginationButtons = ({ pages, pageNumber, keyword, setPageNumber }) => {
-  console.log(pageNumber);
   return (
     <>
       {pages > 1 && (

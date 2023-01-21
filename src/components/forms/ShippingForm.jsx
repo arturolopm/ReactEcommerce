@@ -66,13 +66,14 @@ const ShippingForm = () => {
 
             {/* postal code input field */}
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
-              Postal Code (optional)
+              Postal Code
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
               type="text"
               placeholder="Postal Code"
               value={postalCode}
+              required
               onChange={(event) => setPostalCode(event.target.value)}
             />
             {/* State input field */}

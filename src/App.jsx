@@ -21,6 +21,7 @@ import PaymentForm from "@/components/forms/PaymentForm";
 import PlaceOrderForm from "@/components/forms/PlaceOrderForm";
 import OrderScreen from "@/components/order/OrderScreen";
 import OrderList from "@/components/profile/OrderList";
+import AdminLogin from "@/components/adminView/AdminLogin";
 
 const App = () => {
   return (
@@ -48,6 +49,8 @@ const App = () => {
               path="/products/:_id"
               element={[<IndexHeader />, <IndexProducts />]}
             />
+            <Route path="/admin/" element={[<IndexHeader />, <AdminLogin />]} />
+            {/* <Route path="/admin/" element={[<IndexHeader />, <AdminView />]} /> */}
             <Route path="/contact" element={[<IndexHeader />, <Contact />]} />
             <Route path="/cart" element={[<IndexHeader />, <CartView />]} />
             <Route path="/login" element={[<IndexHeader />, <LoginView />]} />

@@ -11,6 +11,7 @@ import ProfileMenu from "@/components/header/ProfileMenu";
 import NavLinks from "@/components/header/NavLinks";
 import SearchProduct from "@/components/header/SearchProduct";
 const IndexHeader = () => {
+  window.scroll(0, 0);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [showLogo, setShowLogo] = useState(true);
   const handleShowLogo = () => {

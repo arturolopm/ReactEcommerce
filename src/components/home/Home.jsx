@@ -19,7 +19,6 @@ const Home = () => {
   }, [params]);
 
   const [pageNumber, setPageNumber] = useState(params.pagenumber);
-  console.log(pageNumber);
   const [products, setProducts] = useState([]);
   const [pages, setPages] = useState(1);
 
