@@ -13,24 +13,22 @@ const Home = () => {
   }
   const params = useParams();
   const [keyword, setKeyword] = useState(params.keyword);
-  console.log(params);
   useEffect(() => {
     setKeyword(params.keyword);
   }, [params]);
 
-  const [pageNumber, setPageNumber] = useState(params.pagenumber);
+  const [pageNumber, setPageNumber] = useState(1);
   const [products, setProducts] = useState([]);
   const [pages, setPages] = useState(1);
 
   useEffect(
     () => {
       const fetchProducts = async () => {
-        setPageNumber(parseInt(params.pagenumber));
+        // setPageNumber(parseInt(params.pagenumber));
         const { data } = await axios.get(
           `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
         );
-        console.log(keyword);
-        console.log(data);
+
         setProducts(data.products);
         setPages(parseInt(data.pages));
       };
@@ -39,7 +37,6 @@ const Home = () => {
     [keyword, pages, pageNumber],
     []
   );
-
   return (
     <section className=" mx-auto min-h-screen max-w-7xl bg-white px-4 md:text-base">
       {keyword && <h1>Results based on: {keyword}</h1>}
@@ -48,6 +45,14 @@ const Home = () => {
           Your request did not find any match please try again with another word
         </h1>
       )}
+      <div className=" flex justify-center">
+        <PaginationButtons
+          pages={pages}
+          pageNumber={pageNumber}
+          keyword={keyword}
+          setPageNumber={setPageNumber}
+        />
+      </div>
       {products.map((product) => (
         <div key={product._id}>
           <div className=" mx-auto mb-2 flex max-h-[25%] flex-row items-center gap-1 rounded-xl md:container ">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { RxDoubleArrowUp } from "react-icons/rx";
 
@@ -10,7 +10,9 @@ import CartHeader from "@/components/header/CartHeader";
 import ProfileMenu from "@/components/header/ProfileMenu";
 import NavLinks from "@/components/header/NavLinks";
 import SearchProduct from "@/components/header/SearchProduct";
+import { useParams } from "react-router";
 const IndexHeader = () => {
+  const params = useParams();
   window.scroll(0, 0);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [showLogo, setShowLogo] = useState(true);
@@ -23,6 +25,10 @@ const IndexHeader = () => {
   const handleScrollUp = () => {
     window.scroll(0, 0);
   };
+  useEffect(() => {
+    setIsOpenMenu(false);
+  }, [params]);
+
   return (
     <div>
       <header className="  container relative z-10 mx-auto flex items-center gap-8 p-4 md:p-0">

@@ -33,7 +33,7 @@ const SearchProduct = ({ handleShowLogo }) => {
       <label className="ml-auto flex text-right">
         {showInput && (
           <input
-            className="m-0 p-1"
+            className="m-0 border-b-2 p-1"
             type="search"
             placeholder="Search"
             value={keyWord}
