@@ -11,7 +11,6 @@ const OrderScreen = () => {
   const { id } = useParams();
   // get Order Placed
   const [orderPlaced, setOrderPlaced] = useState();
-  console.log(orderPlaced);
   const [orderPlacedError, setOrderPlacedError] = useState();
   const getOrderPlaced = async (id) => {
     const config = {
@@ -26,14 +25,12 @@ const OrderScreen = () => {
       .then(function (response) {
         setOrderPlaced(response.data);
 
-        // console.log(response.status);
         if (response.status === 201) {
           setOrderPlacedError("");
         }
       })
       .catch(function (error) {
         setOrderPlacedError(error.message);
-        console.log(orderPlacedError);
       });
   };
   useEffect(() => {

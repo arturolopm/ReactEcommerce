@@ -23,7 +23,6 @@ const CartInfo = () => {
   };
   useEffect(() => {
     order ? navigate(`/order/${order._id}`) : "";
-    // console.log(order);
   }, [order]);
 
   return (

@@ -11,7 +11,6 @@ const OrderList = () => {
     getOrderListed();
   }, []);
   //   getOrderListed();
-  console.log(orderListed);
   useEffect(() => {
     if (orderListed) {
       setGetOrdersList(orderListed);

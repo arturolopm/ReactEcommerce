@@ -12,7 +12,6 @@ const PaginationButtons = ({
   };
   useEffect(() => {
     checkNan();
-    console.log(pageNumber);
   }, []);
 
   return (

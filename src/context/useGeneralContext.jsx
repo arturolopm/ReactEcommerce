@@ -222,7 +222,6 @@ export default (props) => {
 
   // Get user order's list
   const [orderListed, setOrderListed] = useState();
-  console.log(orderListed);
   const getOrderListed = async () => {
     const config = {
       method: "get",
@@ -236,9 +235,7 @@ export default (props) => {
       .then(function (response) {
         setOrderListed(response.data);
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   };
 
   // Login User
