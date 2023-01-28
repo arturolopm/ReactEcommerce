@@ -156,13 +156,13 @@ export default (props) => {
 
       paymentMethod: paymentMethod,
       itemsPrice: totalPrice,
-      taxprice: totalPrice * 0.15,
+      taxprice: totalPrice * 0.19,
       shippingPrice: totalPrice > 50 ? 0 : 15,
-      totalPrice: totalPrice + (totalPrice > 50 ? 0 : 15) + totalPrice * 0.15,
+      totalPrice: totalPrice + (totalPrice > 50 ? 0 : 15),
     });
     const config = {
       method: "post",
-      url: "http://localhost:5000/api/orders/",
+      url: "/api/orders/",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${user.token}`,
@@ -198,7 +198,7 @@ export default (props) => {
     });
     const config = {
       method: "put",
-      url: `http://localhost:5000/api/orders/${orderId}/pay`,
+      url: `/api/orders/${orderId}/pay`,
 
       headers: {
         "Content-Type": "application/json",
@@ -225,7 +225,7 @@ export default (props) => {
   const getOrderListed = async () => {
     const config = {
       method: "get",
-      url: "http://localhost:5000/api/orders/",
+      url: "/api/orders/",
       headers: {
         Authorization: `Bearer ${user.token}`,
       },
@@ -260,7 +260,7 @@ export default (props) => {
 
     const config = {
       method: "post",
-      url: "http://localhost:5000/api/users/login",
+      url: "/api/users/login",
       headers: {
         "Content-Type": "application/json",
       },
@@ -272,7 +272,7 @@ export default (props) => {
         setUser(response.data);
       })
       .catch(function (error) {
-        error.message = "wrong email or password";
+        error.message = "Email o contraseña incorrectos";
         setLoginError(error);
       });
   };
@@ -286,7 +286,7 @@ export default (props) => {
 
     const config = {
       method: "post",
-      url: "http://localhost:5000/api/users/",
+      url: "api/users/",
       headers: {
         "Content-Type": "application/json",
       },
@@ -298,16 +298,17 @@ export default (props) => {
         setUser(response.data);
         Swal.fire({
           icon: "success",
-          title: "Success",
-          text: "Succesfully registered!",
+          title: "Super!",
+          text: "Registrado exitosamente!",
         });
       })
       .catch(function (error) {
         setRegisterError(
-          "Email already exist, please login instead of register"
+          "El email ya existe, por favor inicia sesión en lugar de registrarte"
         );
       });
-    setTimeout(() => setRegisterError(""), 3000);
+
+    setTimeout(() => setRegisterError(""), 4000);
   };
   const [updateProfileError, setUpdateProfileError] = useState();
   const updateProfile = async ({ name, email, password }) => {
@@ -319,7 +320,7 @@ export default (props) => {
 
     const config = {
       method: "put",
-      url: "http://localhost:5000/api/users/profile",
+      url: "/api/users/profile",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${user.token}`,
@@ -333,8 +334,8 @@ export default (props) => {
         setUpdateProfileError("");
         Swal.fire({
           icon: "success",
-          title: "Success",
-          text: "Profile updated!",
+          title: "Super!",
+          text: "Perfil actualizado!",
         });
       })
       .catch(function (error) {

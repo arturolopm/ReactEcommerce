@@ -36,14 +36,24 @@ const DetailsProductsHome = ({ objectProduct }) => {
       </Link>
       <div className="mb-0 flex flex-wrap  items-center gap-4 font-bold md:justify-start md:gap-1 md:self-start ">
         <span className=" self-center text-xs md:w-[40%] md:text-lg">
-          ${(objectProduct.price * (1 - objectProduct.discount)).toFixed(2)}
+          COP
+          {Intl.NumberFormat("es-CO", {
+            style: "currency",
+            currency: "COP",
+          })
+            .format(objectProduct.price * (1 - objectProduct.discount))
+            .slice(0, -3)}
         </span>
-        <span className="  mx-auto rounded-md bg-pale-green py-1 px-2 text-green-primary md:w-10 md:text-base">
-          {objectProduct.discount * 100}%
-        </span>
-        <span className=" text-right text-xs text-grayish-blue line-through md:text-left md:text-lg">
-          ${objectProduct.price.toFixed(2)}
-        </span>
+        {objectProduct.discount > 0 && (
+          <span className="  mx-auto rounded-md bg-pale-green py-1 px-2 text-green-primary md:w-10 md:text-base">
+            {objectProduct.discount * 100}%
+          </span>
+        )}
+        {objectProduct.discount > 0 && (
+          <span className=" text-right text-xs text-grayish-blue line-through md:text-left md:text-lg">
+            COP${objectProduct.price?.toFixed(0)}
+          </span>
+        )}
       </div>
       <div className=" flex  flex-row justify-between md:max-w-3xl ">
         <div className=" flex grow items-baseline justify-between rounded-md bg-gray-200  px-1 py-1 ">
@@ -66,7 +76,7 @@ const DetailsProductsHome = ({ objectProduct }) => {
           onClick={handleAddToCart}
         >
           <CartIcon fill="#fff" className="fill-white" />
-          <span>Add</span>
+          <span>Añadir</span>
         </button>
       </div>
     </section>

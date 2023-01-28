@@ -24,12 +24,13 @@ const ShippingForm = () => {
   return (
     <>
       <h1 className="mx-auto mt-5 mb-4 text-center text-3xl font-bold text-green-primary md:mt-10">
-        Delivery Address
+        Dirección de envio
       </h1>
       {cartItems.length == 0 ? (
         <div className=" mx-auto flex h-[69vh] w-full justify-center bg-slate-100">
           <h1 className="mx-auto mt-10 mb-4 text-center text-lg font-bold text-dark-grayish-blue">
-            Cart can not be empty to process delivery
+            El carrito no puede estar vacio para proseguir al envío, añade
+            algunos artículos antes!
           </h1>
         </div>
       ) : (
@@ -41,7 +42,7 @@ const ShippingForm = () => {
           >
             {/* address input field */}
             <label className="mb-2 block text-sm font-bold text-gray-700">
-              Address
+              Dirección
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
@@ -53,7 +54,7 @@ const ShippingForm = () => {
             />
             {/* city input field */}
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
-              City
+              Ciudad
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
@@ -66,7 +67,7 @@ const ShippingForm = () => {
 
             {/* postal code input field */}
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
-              Postal Code
+              Codigo postal (si no lo conoces escribe "0")
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
@@ -78,7 +79,7 @@ const ShippingForm = () => {
             />
             {/* State input field */}
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
-              State
+              Departamento o Distrito
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
@@ -90,7 +91,7 @@ const ShippingForm = () => {
             />
             {/* country input field */}
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
-              Country
+              País
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
@@ -102,7 +103,7 @@ const ShippingForm = () => {
             />
 
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
-              Contact Email
+              Email de contacto
             </label>
 
             <input
@@ -114,7 +115,7 @@ const ShippingForm = () => {
               onChange={(event) => setEmail(event.target.value)}
             />
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
-              Contact phone (optional)
+              Teléfono de contacto (opcional)
             </label>
 
             <input
@@ -130,7 +131,7 @@ const ShippingForm = () => {
                 className="focus:shadow-outline-primary w-full rounded-md bg-green-primary py-2 px-4 text-center text-white hover:bg-green-700 focus:outline-none"
                 type="submit"
               >
-                Continue
+                Continuar
               </button>
             </div>
           </form>

@@ -28,7 +28,7 @@ const LoginForm = () => {
     <div className=" h-[69vh] w-full bg-slate-100">
       {/* Welcome heading */}
       <h1 className="mx-auto mt-4 mb-4 text-center text-3xl font-bold text-green-primary md:mt-10">
-        Welcome
+        Bienvenido
       </h1>
       {/* Form container */}
       <div className="h-88 container mx-auto mt-10 mb-20 flex max-w-md flex-wrap justify-center ">
@@ -52,7 +52,7 @@ const LoginForm = () => {
 
             {attempts > 0 && (
               <p className="mb-4 text-sm font-bold text-red-600">
-                Number of login attempts: {attempts}
+                intentos: {attempts}
               </p>
             )}
             {/* Email input field */}
@@ -68,7 +68,7 @@ const LoginForm = () => {
             />
             {/* Password input field */}
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
-              Password
+              contraseña
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
@@ -89,7 +89,7 @@ const LoginForm = () => {
             {/* Link to the create account page */}
             <p className="mt-4 text-center text-sm text-gray-600">
               <Link className="font-bold text-green-primary" to="/register">
-                or Create Account
+                o crear cuenta
               </Link>
             </p>
           </form>

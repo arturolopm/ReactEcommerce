@@ -18,13 +18,12 @@ const PaymentForm = () => {
   return (
     <>
       <h1 className="mx-auto mt-10 mb-4 text-center text-3xl font-bold text-green-primary">
-        Payment Method
+        Metodo de pago
       </h1>
       {cartItems.length == 0 ? (
         <div className=" mx-auto flex h-[69vh] w-full justify-center bg-slate-100">
           <h1 className="mx-auto mt-10 mb-4 text-center text-lg font-bold text-dark-grayish-blue">
-            Cart can not be empty to process payment, please go back to home
-            screen to add a few
+            EL carrito no puede estar vacio para proceder al pago
           </h1>
         </div>
       ) : (
@@ -35,7 +34,7 @@ const PaymentForm = () => {
             onSubmit={submitHandler}
           >
             <div className="mb-2 block text-sm font-bold text-gray-700">
-              Payment Method
+              Metodo de pago
             </div>
             <label>
               <input
@@ -56,14 +55,14 @@ const PaymentForm = () => {
                 checked={paymentMethodForm === "creditCard"}
                 onChange={(event) => setPaymentMethodForm(event.target.value)}
               />
-              Credit or Debit Card
+              Tarjeta
             </label>
 
             <button
               className="hover:bg-green-secondary focus:bg-green-secondary mt-6 w-full rounded-full bg-green-primary py-2 px-4 text-white shadow-md focus:outline-none"
               type="submit"
             >
-              Proceed to Payment
+              Proseguir al pago
             </button>
           </form>
         </div>

@@ -14,7 +14,7 @@ const CartDetailsHeader = (props) => {
         <h4 className=" px-6 py-2 text-lg font-bold ">Cart</h4>
         <hr />
         <div className=" ml-2 text-left text-slate-500 ">
-          Delete all items
+          Borrar todos los artículos
           <button className=" mx-4" onClick={() => deleteAllCartItems([])}>
             <DeleteIcon className="hover:fill-green-primary" />
           </button>
@@ -34,16 +34,16 @@ const CartDetailsHeader = (props) => {
               <h6>{item?.title}</h6>
               <div>
                 <span>
-                  ${(item?.price * (1 - item?.discount))?.toFixed(2)} x{" "}
-                  {item.quantity}
+                  ${item?.price * (1 - item?.discount)} x {item.quantity}
                 </span>{" "}
                 <span className=" font-bold">
                   ={" "}
-                  {(
-                    item?.price *
-                    (1 - item?.discount) *
-                    item?.quantity
-                  )?.toFixed(2)}
+                  {Intl.NumberFormat("es-CO", {
+                    style: "currency",
+                    currency: "COP",
+                  })
+                    .format(item?.price * (1 - item?.discount) * item?.quantity)
+                    .slice(0, -3)}
                 </span>
               </div>
             </div>
@@ -58,7 +58,13 @@ const CartDetailsHeader = (props) => {
         {cartItems.length != 0 && (
           <Link to="/cart" onClick={() => setIsOpenCart(false)}>
             <button className=" w-full rounded-md bg-green-primary py-4 text-white transition-all hover:bg-green-700">
-              Checkout = ${totalPrice?.toFixed(2)}
+              Ir al pago = COP
+              {Intl.NumberFormat("es-CO", {
+                style: "currency",
+                currency: "COP",
+              })
+                .format(totalPrice)
+                .slice(0, -3)}
             </button>
           </Link>
         )}

@@ -14,7 +14,7 @@ const LoggedView = () => {
           to="/shipping"
           className=" group relative mb-2 border-2 border-dashed text-base font-bold text-green-primary"
         >
-          Click here to finish your purchase!
+          Click aqui para terminar tu compra!
           <span className=" absolute bottom-0 mb-1 block h-[1px] w-full scale-x-0 pr-2 transition-all duration-200 group-hover:scale-x-100 group-hover:bg-green-primary"></span>
         </Link>
       )}
@@ -23,11 +23,11 @@ const LoggedView = () => {
         <span className=" absolute bottom-0 mb-1 block h-[1px] w-full scale-x-0 transition-all duration-200 group-hover:scale-x-100 group-hover:bg-green-primary"></span>
       </Link>
       <Link to="/order" className=" group relative hover:text-green-primary">
-        Order History
+        Historial de órdenes
         <span className="absolute bottom-0 block h-[1px] w-full scale-x-0 transition-all duration-200 group-hover:scale-x-100 group-hover:bg-green-primary"></span>
       </Link>
       <Link to="/profile" className="group relative hover:text-green-primary">
-        Edit profile
+        Editar perfil
         <span className=" absolute bottom-0 mb-1 block h-[1px] w-full scale-x-0 transition-all duration-200 group-hover:scale-x-100 group-hover:bg-green-primary"></span>
       </Link>
       <form action="login" method="post"></form>
@@ -36,7 +36,7 @@ const LoggedView = () => {
         to="/home"
         className=" group relative my-2 border-2 border-dashed text-base font-bold text-green-primary"
       >
-        See more products!
+        Ver más productos!
         <span className=" absolute bottom-0 mb-1 block h-[1px] w-full scale-x-0 pr-2 transition-all duration-200 group-hover:scale-x-100 group-hover:bg-green-primary"></span>
       </Link>
 
@@ -46,7 +46,7 @@ const LoggedView = () => {
             onClick={logOut}
             className=" h-6 w-3/5 rounded-md bg-dark-grayish-blue text-white transition-all hover:bg-green-700"
           >
-            Log Out
+            Cerrar sesión
           </button>
         </Link>
       </div>

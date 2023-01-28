@@ -14,8 +14,8 @@ const CartInfo = () => {
     order,
   } = useContext(useGeneralContext);
   const shippingPrice = totalPrice > 50 ? 0 : 15;
-  const taxPrice = totalPrice * 0.15;
-  const orderPrice = (totalPrice + shippingPrice + taxPrice)?.toFixed(2);
+  const taxPrice = totalPrice * 0.19;
+  const orderPrice = totalPrice + shippingPrice;
 
   const navigate = useNavigate();
   const HandlePlaceOrder = () => {
@@ -31,13 +31,13 @@ const CartInfo = () => {
         <h4 className=" px-6 py-2 text-lg font-bold ">Cart</h4>
         <hr />
         <div className=" text-left text-slate-500 ">
-          Delete all items
+          Borrar todos
           <button className=" mx-4" onClick={() => deleteAllCartItems([])}>
             <DeleteIcon className="hover:fill-green-primary" />
           </button>
         </div>
         {cartItems.length === 0 && (
-          <p className="py-16 text-center">Your cart is empty</p>
+          <p className="py-16 text-center">Tu carrito esta vacío</p>
         )}
         {cartItems.map((item) => (
           <article
@@ -51,15 +51,22 @@ const CartInfo = () => {
               <h6>{item?.title}</h6>
               <div>
                 <span>
-                  ${(item?.price * (1 - item?.discount))?.toFixed(2)} x{" "}
-                  {item.quantity}
+                  {Intl.NumberFormat("es-CO", {
+                    style: "currency",
+                    currency: "COP",
+                  })
+                    .format(item?.price * (1 - item?.discount))
+                    .slice(0, -3)}{" "}
+                  x {item.quantity} ={" "}
                 </span>
                 <span className=" font-bold">
-                  {(
-                    item?.price *
-                    (1 - item?.discount) *
-                    item?.quantity
-                  )?.toFixed(2)}
+                  {" "}
+                  {Intl.NumberFormat("es-CO", {
+                    style: "currency",
+                    currency: "COP",
+                  })
+                    .format(item?.price * (1 - item?.discount) * item?.quantity)
+                    .slice(0, -3)}
                 </span>
               </div>
             </div>
@@ -76,20 +83,43 @@ const CartInfo = () => {
         <table className="  grow table-fixed text-very-dark-blue">
           <tbody className="  justify-center bg-slate-100">
             <tr>
-              <td>Price</td>
-              <td>${totalPrice?.toFixed(2)}</td>
+              <td>Precio</td>
+              <td>
+                COP
+                {Intl.NumberFormat("es-CO", {
+                  style: "currency",
+                  currency: "COP",
+                })
+                  .format(totalPrice)
+                  .slice(0, -3)}
+              </td>
             </tr>
             <tr>
-              <td>Shipping</td>
-              <td>${shippingPrice.toFixed(2)}</td>
+              <td>Envío</td>
+              <td>COP${shippingPrice}</td>
             </tr>
             <tr>
-              <td>tax</td>
-              <td>${taxPrice?.toFixed(2)}</td>
+              <td>IVA</td>
+              <td>
+                {Intl.NumberFormat("es-CO", {
+                  style: "currency",
+                  currency: "COP",
+                })
+                  .format(taxPrice)
+                  .slice(0, -3)}
+              </td>
             </tr>
             <tr>
               <td>Total</td>
-              <td>${orderPrice}</td>
+              <td>
+                COP
+                {Intl.NumberFormat("es-CO", {
+                  style: "currency",
+                  currency: "COP",
+                })
+                  .format(orderPrice)
+                  .slice(0, -3)}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -98,7 +128,7 @@ const CartInfo = () => {
           onClick={HandlePlaceOrder}
           className=" w-full rounded-md bg-green-primary py-4 text-white transition-all hover:bg-green-700"
         >
-          Place Order
+          Crear orden
         </button>
       </div>
     </div>

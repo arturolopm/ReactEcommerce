@@ -31,23 +31,23 @@ const OrderDetails = ({ orderPlaced }) => {
         <p>Shipping: {orderInfoDetails?.shippingAddress?.country}</p>
         {/* <p>Payment Method: {orderInfoDetails?.paymentMethod}</p> */}
         {orderInfoDetails?.isPaid ? (
-          <p className=" text-base font-bold text-green-primary">Paid</p>
+          <p className=" text-base font-bold text-green-primary">Pagada</p>
         ) : (
-          <p className=" font-bold text-red-600">Not Paid</p>
+          <p className=" font-bold text-red-600">No pagado aún</p>
         )}
       </div>
       <div className=" mx-auto">
         <div className=" text-3xl text-green-primary">
           <MdLocationOn />
         </div>
-        <div>Deliver to</div>
+        <div>Enviar a:</div>
         <p>{orderInfoDetails?.shippingAddress?.address}</p>
         <p>{orderInfoDetails?.shippingAddress?.city}</p>
-        {orderInfoDetails?.isDelivered ? (
-          <p className=" font-bold text-green-primary">Delivered</p>
+        {/* {orderInfoDetails?.isDelivered ? (
+          <p className=" font-bold text-green-primary">Entregado</p>
         ) : (
-          <p className=" font-bold ">Not delivered yet</p>
-        )}
+          <p className=" font-bold ">No entregado aún</p>
+        )} */}
       </div>
     </section>
   );

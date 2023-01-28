@@ -35,7 +35,7 @@ const SearchProduct = ({ handleShowLogo }) => {
           <input
             className="m-0 border-b-2 p-1"
             type="search"
-            placeholder="Search"
+            placeholder="Buscar"
             value={keyWord}
             onChange={(e) => setKeyWord(e.target.value)}
           />

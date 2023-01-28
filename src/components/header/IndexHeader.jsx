@@ -59,8 +59,8 @@ const IndexHeader = () => {
         </div>
       </header>
       <span className="container mx-auto mb-2 h-[1px] w-full bg-gray-500 md:block"></span>
-      <div className=" fixed bottom-5 right-5 z-50  text-5xl text-green-primary">
-        <a href="https://wa.me/573114483981?text=I'm%20interested%20in%20your%20Jade%20figures">
+      <div className=" fixed bottom-5 right-5 z-30 text-5xl text-green-primary">
+        <a href="https://wa.me/573114483981?text=Me%20interesan%20sus%20figuras">
           <FaWhatsapp />
         </a>
       </div>

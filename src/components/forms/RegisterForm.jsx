@@ -18,6 +18,7 @@ const RegisterForm = () => {
 
   // Define a submitHandler function to handle the form submission
   const submitHandler = (event) => {
+    window.scroll(0, 0);
     event.preventDefault();
     // Validate the form values and create the new user account
     if (password !== passwordConfirmation) {
@@ -34,7 +35,7 @@ const RegisterForm = () => {
     <>
       {/* Welcome heading */}
       <h1 className="mx-auto mt-10 mb-4 text-center text-3xl font-bold text-green-primary">
-        Welcome
+        Bienvenido
       </h1>
       {user ? (
         <div className=" mx-auto flex h-[69vh] w-full justify-center bg-slate-100">
@@ -61,7 +62,7 @@ const RegisterForm = () => {
             )}
             {/* Name input field */}
             <label className="mb-2 block text-sm font-bold text-gray-700">
-              Name
+              Nombre
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
@@ -84,7 +85,7 @@ const RegisterForm = () => {
 
             {/* Password input field */}
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
-              Password
+              Contraseña
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
@@ -95,7 +96,7 @@ const RegisterForm = () => {
             />
             {/* Password confirmation input field */}
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
-              Confirm Password
+              Confirmar contraseña
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
@@ -110,13 +111,16 @@ const RegisterForm = () => {
                 className="focus:shadow-outline-primary w-full rounded-md bg-green-primary py-2 px-4 text-center text-white hover:bg-green-700 focus:outline-none"
                 type="submit"
               >
-                Register
+                Registrarse
               </button>
             </div>
             {/* Link to the login page */}
             <p className="mt-4 text-center text-sm text-gray-600">
-              <Link className="font-bold text-green-primary" to="/login">
-                or Login
+              <Link
+                className="cursor-pointer font-bold text-green-primary"
+                to="/login"
+              >
+                o ingresa
               </Link>
             </p>
           </form>

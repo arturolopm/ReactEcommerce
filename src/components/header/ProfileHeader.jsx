@@ -9,7 +9,7 @@ const ProfileHeader = () => {
     <section className=" absolute top-[125%] right-0 z-10 w-3/5 md:top-full md:left-full md:max-w-md md:-translate-x-full">
       <div className=" mx-4 rounded-md bg-white shadow-md">
         <h4 className="  px-6 py-2 text-lg font-bold  text-green-primary">
-          Hello
+          Hola
         </h4>
         <hr />
 

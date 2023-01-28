@@ -24,24 +24,33 @@ const CartInfoDetails = ({
     const { data: getClientId } = await axios.get("/api/config/paypal");
     setClientId(getClientId);
   };
+  const [EPAYCOCLIENTID, setEPAYCOCLIENTID] = useState();
+  const addEPAYCOSCRIPT = async () => {
+    const { data: getEPAYCOCLIENTID } = await axios.get("/api/config/epayco");
+    setEPAYCOCLIENTID(getEPAYCOCLIENTID);
+  };
 
   useEffect(() => {
     addPayPalScript();
   }, []);
+  useEffect(() => {
+    addEPAYCOSCRIPT();
+  }, []);
+
   const [priceToPaypal, setPriceToPaypal] = useState();
 
   useEffect(() => {
     getItemsInOrder();
     if (orderPlaced) {
       const priceExist = "totalPrice" in orderPlaced;
-      priceExist ? setPriceToPaypal(orderPlaced.totalPrice.toFixed(2)) : "";
+      priceExist ? setPriceToPaypal(orderPlaced.totalPrice) : "";
     }
   }, [orderPlaced]);
 
   const successPaymentHandler = () => {
     payOrder(id);
     setGetOrderPaid(!getOrderPaid);
-    Swal.fire("Order Processed!", "Your order is on its way!", "success");
+    Swal.fire("Order Procesada!", "Tu orden va en camino!", "success");
     setOrder();
   };
   const [showButtons, setShowButtons] = useState();
@@ -80,10 +89,10 @@ const CartInfoDetails = ({
   return (
     <div className=" mx-auto flex max-w-5xl flex-col gap-4 md:flex-row">
       <div className=" mx-4 max-w-3xl rounded-md bg-white text-sm shadow-md md:w-3/5">
-        <h4 className=" px-6 py-2 text-lg font-bold ">Items ordered</h4>
+        <h4 className=" px-6 py-2 text-lg font-bold ">Articulos ordenados</h4>
         {orderPlaced?.isPaid ? (
           <p className=" text-base font-bold text-green-primary">
-            Your order is on its way!
+            To orden va en camino!
           </p>
         ) : (
           ""
@@ -103,51 +112,62 @@ const CartInfoDetails = ({
               <h6>{item?.title}</h6>
               <div>
                 <span>
-                  ${(item?.price * (1 - item?.discount)).toFixed(2)} x{" "}
-                  {item.quantity}
+                  ${item?.price * (1 - item?.discount)} x {item.quantity}
                 </span>
                 <span className=" font-bold">
                   {" "}
-                  = $
-                  {(
-                    item?.price *
-                    (1 - item?.discount) *
-                    item?.quantity
-                  )?.toFixed(2)}
+                  = ${item?.price * (1 - item?.discount) * item?.quantity}
                 </span>
               </div>
             </div>
           </article>
         ))}
       </div>
-      <div className="flex flex-col md:w-2/5">
+      <div className="flex flex-col shadow-md md:w-2/5">
         <table className="  grow table-fixed text-very-dark-blue">
           <tbody className="  justify-center bg-slate-100">
-            {/* <tr>
-              <td>Price</td>
-              <td>${orderPlaced?.totalPrice?.toFixed(2)}</td>
-            </tr> */}
             <tr>
-              <td>Shipping</td>
-              <td>${orderPlaced?.shippingPrice.toFixed(2)}</td>
+              <td>Precio</td>
+              <td>
+                COP
+                {Intl.NumberFormat("es-CO", {
+                  style: "currency",
+                  currency: "COP",
+                })
+                  .format(orderPlaced?.totalPrice)
+                  .slice(0, -3)}
+              </td>
             </tr>
             <tr>
-              <td>tax</td>
-              <td>${orderPlaced?.taxPrice?.toFixed(2)}</td>
+              <td>Envío</td>
+              <td>$COP{orderPlaced?.shippingPrice}</td>
+            </tr>
+            <tr>
+              <td>IVA</td>
+              <td>$COP{orderPlaced?.totalPrice * 0.19}</td>
             </tr>
             <tr>
               <td>Total</td>
-              <td>${orderPlaced?.totalPrice.toFixed(2)}</td>
+              <td>
+                COP
+                {Intl.NumberFormat("es-CO", {
+                  style: "currency",
+                  currency: "COP",
+                })
+                  .format(orderPlaced?.totalPrice)
+                  .slice(0, -3)}
+              </td>
             </tr>
           </tbody>
         </table>
         {clientId && (
           <div>
-            {!orderPlaced?.isPaid && (
-              <PayPalScriptProvider options={{ "client-id": clientId }}>
+            {/* {!orderPlaced?.isPaid &&
+              {
+                <PayPalScriptProvider options={{ "client-id": clientId }}>
                 {showButtons}
-              </PayPalScriptProvider>
-            )}
+              </PayPalScriptProvider> 
+              }} */}
           </div>
         )}
       </div>

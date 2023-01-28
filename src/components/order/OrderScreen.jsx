@@ -15,7 +15,7 @@ const OrderScreen = () => {
   const getOrderPlaced = async (id) => {
     const config = {
       method: "get",
-      url: `http://localhost:5000/api/orders/${id}`,
+      url: `/api/orders/${id}`,
       headers: {
         Authorization: `Bearer ${user.token}`,
       },

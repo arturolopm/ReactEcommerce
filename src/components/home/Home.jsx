@@ -39,10 +39,11 @@ const Home = () => {
   );
   return (
     <section className=" mx-auto min-h-screen max-w-7xl bg-white px-4 md:text-base">
-      {keyword && <h1>Results based on: {keyword}</h1>}
+      {keyword && <h1>Resultados basados en: {keyword}</h1>}
       {products.length == 0 && (
         <h1 className=" font-bold">
-          Your request did not find any match please try again with another word
+          Tu busqueda no produjo ningún resultado, por favor intenta con otra
+          palabra
         </h1>
       )}
       <div className=" flex justify-center">
@@ -66,6 +67,7 @@ const Home = () => {
           <span className="container mx-auto mb-2 block h-[1px] w-full bg-gray-300"></span>
         </div>
       ))}
+
       <div className=" flex justify-center">
         <PaginationButtons
           pages={pages}

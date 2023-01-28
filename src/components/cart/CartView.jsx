@@ -12,18 +12,18 @@ const CartView = () => {
     <section className=" mx-auto min-h-screen max-w-7xl bg-white px-4 md:text-base">
       <div className=" mx-4 rounded-md bg-white shadow-md">
         <h4 className=" px-6 py-2 text-lg font-bold text-green-primary">
-          CART
+          Carrito
         </h4>
         <h1 className=" ml-8">{user?.name}</h1>
         <hr />
         <div className=" text-left text-slate-500 ">
-          Delete all items
+          Borrar todos
           <button className=" mx-4" onClick={() => deleteAllCartItems([])}>
             <DeleteIcon className="hover:fill-green-primary" />
           </button>
         </div>
         {cartItems.length === 0 && (
-          <p className="py-16 text-center">Your cart is empty</p>
+          <p className="py-16 text-center">El carrito está vacío</p>
         )}
         {cartItems.map((item) => (
           <article
@@ -42,17 +42,11 @@ const CartView = () => {
               <p className=" hidden md:block">{item?.description}</p>
               <div>
                 <span>
-                  ${(item?.price * (1 - item?.discount))?.toFixed(2)} x{" "}
-                  {item?.quantity}
+                  ${item?.price * (1 - item?.discount)} x {item?.quantity}
                 </span>
                 <span className=" font-bold">
                   {" "}
-                  ={" "}
-                  {(
-                    item?.price *
-                    (1 - item?.discount) *
-                    item?.quantity
-                  )?.toFixed(2)}
+                  = {item?.price * (1 - item?.discount) * item?.quantity}
                 </span>
               </div>
             </div>
@@ -68,12 +62,37 @@ const CartView = () => {
           <div className=" px-6 pb-8">
             <Link to="/shipping">
               <button className=" w-full rounded-md bg-green-primary py-4 text-white transition-all hover:bg-green-700">
-                Checkout and Shipping = ${totalPrice?.toFixed(2)}
+                Pago y envío = COP
+                {Intl.NumberFormat("es-CO", {
+                  style: "currency",
+                  currency: "COP",
+                })
+                  .format(totalPrice)
+                  .slice(0, -3)}
               </button>
             </Link>
           </div>
         )}
       </div>
+      <form>
+        <script
+          src="https://checkout.epayco.co/checkout.js"
+          class="epayco-button"
+          data-epayco-key="491d6a0b6e992cf924edd8d3d088aff1"
+          data-epayco-amount="50000"
+          data-epayco-name="Vestido Mujer Primavera"
+          data-epayco-description="Vestido Mujer Primavera"
+          data-epayco-currency="cop"
+          data-epayco-country="co"
+          data-epayco-test="true"
+          data-epayco-external="false"
+          data-epayco-response="https://ejemplo.com/respuesta.html"
+          data-epayco-confirmation="https://ejemplo.com/confirmacion"
+          data-epayco-methodconfirmation="get"
+        >
+          holiwis
+        </script>
+      </form>
     </section>
   );
 };

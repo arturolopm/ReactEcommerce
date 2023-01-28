@@ -11,7 +11,7 @@ const OrderInfo = () => {
         <div className="  text-3xl text-green-primary">
           <FaUserShield />
         </div>
-        <div>User </div>
+        <div>Usuario </div>
         <p>{user?.name}</p>
         <p>{user?.email}</p>
       </div>
@@ -19,7 +19,7 @@ const OrderInfo = () => {
         <div className=" text-3xl text-green-primary">
           <MdLocalShipping />
         </div>
-        <div>Order Info</div>
+        <div>Información</div>
         <p>Shippig: {shippingAddress.country}</p>
         {/* <p>Payment Method: {paymentMethod}</p> */}
       </div>
@@ -27,7 +27,7 @@ const OrderInfo = () => {
         <div className=" text-3xl text-green-primary">
           <MdLocationOn />
         </div>
-        <div>Deliver to</div>
+        <div>Entregar a</div>
         <p>{shippingAddress.address}</p>
         <p>{shippingAddress.city}</p>
       </div>

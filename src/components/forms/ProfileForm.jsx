@@ -38,10 +38,10 @@ const ProfileForm = () => {
     <>
       {/* Welcome heading */}
       <h1 className="mx-auto mt-10 mb-2 text-center text-3xl font-bold text-green-primary">
-        Welcome
+        Bienvenido
       </h1>
       <h2 className="mx-auto mt-1 mb-4 text-center text-base font-bold text-green-primary">
-        You can modify your profile details here
+        Puedes modificar los detalles de tu perfil aqui
       </h2>
 
       {!user ? (
@@ -69,7 +69,7 @@ const ProfileForm = () => {
             )}
             {/* Name input field */}
             <label className="mb-2 block text-sm font-bold text-gray-700">
-              Name
+              Nombre
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
@@ -92,7 +92,7 @@ const ProfileForm = () => {
 
             {/* Password input field */}
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
-              New Password
+              Nueva contraseña
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
@@ -104,7 +104,7 @@ const ProfileForm = () => {
             />
             {/* Password confirmation input field */}
             <label className="mt-4 mb-2 block text-sm font-bold text-gray-700">
-              Confirm new Password
+              Confirmar nueva contraseña
             </label>
             <input
               className="focus:shadow-outline-primary w-full appearance-none rounded-md py-2 px-3 leading-tight text-gray-700 focus:outline-none"
@@ -120,7 +120,7 @@ const ProfileForm = () => {
                 className="focus:shadow-outline-primary w-full rounded-md bg-green-primary py-2 px-4 text-center text-white hover:bg-green-700 focus:outline-none"
                 type="submit"
               >
-                Update
+                Actualizar
               </button>
             </div>
           </form>

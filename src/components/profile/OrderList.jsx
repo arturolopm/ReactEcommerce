@@ -30,13 +30,13 @@ const OrderList = () => {
     <section className="  mx-auto min-h-screen max-w-7xl bg-white px-4 md:text-base">
       <div className=" mx-4 rounded-md bg-slate-50 shadow-md">
         <h4 className=" px-6 py-2 text-lg font-bold text-green-primary">
-          ORDERS INFO
+          Información de las órdenes
         </h4>
         <h1 className=" ml-8 font-bold text-green-primary">{user?.name}</h1>
         <hr />
 
         {getOrdersList.length === 0 && (
-          <p className="py-16 text-center">You have no orders</p>
+          <p className="py-16 text-center">Aún no hay órdenes</p>
         )}
         {getOrdersList &&
           getOrdersList.map((order) => (
@@ -48,15 +48,13 @@ const OrderList = () => {
               <div className="flex gap-6">
                 <div>{formatDate(order?.updatedAt)}</div>
                 {order?.isPaid ? (
-                  <div className=" font-bold text-green-primary ">Paid</div>
+                  <div className=" font-bold text-green-primary ">Pagada</div>
                 ) : (
-                  <div className=" font-bold text-red-500 ">Not Paid</div>
+                  <div className=" font-bold text-red-500 ">No pagada</div>
                 )}
 
                 <div>
-                  <div className=" font-bold">
-                    ${order?.totalPrice?.toFixed(2)}
-                  </div>
+                  <div className=" font-bold">${order?.totalPrice}</div>
                 </div>
               </div>
               <hr />

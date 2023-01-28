@@ -44,7 +44,7 @@ const LoginForm = () => {
         </div>
         <p>
           <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-            Create Account
+            Crear cuenta
           </Link>
         </p>
       </form>
