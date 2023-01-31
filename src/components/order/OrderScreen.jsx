@@ -5,7 +5,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import OrderDetails from "@/components/order/OrderDetails";
 import CartInfoDetails from "@/components/order/CartInfoDetails";
-
+import MPButton from "@/components/buttons/MPButton";
 const OrderScreen = () => {
   const { user } = useContext(useGeneralContext);
   const { id } = useParams();
@@ -59,6 +59,7 @@ const OrderScreen = () => {
         getOrderPaid={getOrderPaid}
         setGetOrderPaid={setGetOrderPaid}
       />
+      <MPButton id={id} />
     </>
   );
 };
