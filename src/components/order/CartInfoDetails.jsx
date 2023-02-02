@@ -1,7 +1,8 @@
 import { useEffect, useState, useContext } from "react";
 import { useGeneralContext } from "@/context/useGeneralContext";
+import MPButton from "@/components/buttons/MPButton";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -10,10 +11,8 @@ const CartInfoDetails = ({
   setOrderPlaced,
   orderPlacedError,
   id,
-  getOrderPaid,
-  setGetOrderPaid,
 }) => {
-  const { payOrder, setOrder } = useContext(useGeneralContext);
+  const { payOrder, setOrder, payOrderMP } = useContext(useGeneralContext);
   const [itemsInOrder, setItemsInOrder] = useState();
   const getItemsInOrder = async () => {
     await setItemsInOrder(orderPlaced?.orderItems);
@@ -24,17 +23,9 @@ const CartInfoDetails = ({
     const { data: getClientId } = await axios.get("/api/config/paypal");
     setClientId(getClientId);
   };
-  const [EPAYCOCLIENTID, setEPAYCOCLIENTID] = useState();
-  const addEPAYCOSCRIPT = async () => {
-    const { data: getEPAYCOCLIENTID } = await axios.get("/api/config/epayco");
-    setEPAYCOCLIENTID(getEPAYCOCLIENTID);
-  };
 
   useEffect(() => {
     addPayPalScript();
-  }, []);
-  useEffect(() => {
-    addEPAYCOSCRIPT();
   }, []);
 
   const [priceToPaypal, setPriceToPaypal] = useState();
@@ -49,10 +40,20 @@ const CartInfoDetails = ({
 
   const successPaymentHandler = () => {
     payOrder(id);
-    setGetOrderPaid(!getOrderPaid);
     Swal.fire("Order Procesada!", "Tu orden va en camino!", "success");
     setOrder();
   };
+
+  const [params, setParams] = useSearchParams();
+
+  useEffect(
+    () => {
+      payOrderMP(id, params.get("payment_id"));
+    },
+    [params],
+    []
+  );
+
   const [showButtons, setShowButtons] = useState();
 
   useEffect(() => {
@@ -74,8 +75,6 @@ const CartInfoDetails = ({
           }}
           onApprove={async (data, actions) => {
             const details = await actions.order.capture();
-            const name = details.payer.name.given_name;
-            // alert("Transaction completed by " + name);
 
             successPaymentHandler();
             // actions.redirect(`/${orderPlaced._id}`);
@@ -112,11 +111,23 @@ const CartInfoDetails = ({
               <h6>{item?.title}</h6>
               <div>
                 <span>
-                  ${item?.price * (1 - item?.discount)} x {item.quantity}
+                  {Intl.NumberFormat("es-CO", {
+                    style: "currency",
+                    currency: "COP",
+                  })
+                    .format(item?.price * (1 - item?.discount))
+                    .slice(0, -3)}{" "}
+                  x {item.quantity}
                 </span>
                 <span className=" font-bold">
                   {" "}
-                  = ${item?.price * (1 - item?.discount) * item?.quantity}
+                  = COP
+                  {Intl.NumberFormat("es-CO", {
+                    style: "currency",
+                    currency: "COP",
+                  })
+                    .format(item?.price * (1 - item?.discount) * item?.quantity)
+                    .slice(0, -3)}
                 </span>
               </div>
             </div>
@@ -124,7 +135,7 @@ const CartInfoDetails = ({
         ))}
       </div>
       <div className="flex flex-col shadow-md md:w-2/5">
-        <table className="  grow table-fixed text-very-dark-blue">
+        <table className=" mb-2 grow table-fixed text-very-dark-blue shadow-md">
           <tbody className="  justify-center bg-slate-100">
             <tr>
               <td>Precio</td>
@@ -140,11 +151,27 @@ const CartInfoDetails = ({
             </tr>
             <tr>
               <td>Envío</td>
-              <td>$COP{orderPlaced?.shippingPrice}</td>
+              <td>
+                COP
+                {Intl.NumberFormat("es-CO", {
+                  style: "currency",
+                  currency: "COP",
+                })
+                  .format(orderPlaced?.shippingPrice)
+                  .slice(0, -3)}
+              </td>
             </tr>
             <tr>
               <td>IVA</td>
-              <td>$COP{orderPlaced?.totalPrice * 0.19}</td>
+              <td>
+                COP
+                {Intl.NumberFormat("es-CO", {
+                  style: "currency",
+                  currency: "COP",
+                })
+                  .format(orderPlaced?.totalPrice * 0.19)
+                  .slice(0, -3)}
+              </td>
             </tr>
             <tr>
               <td>Total</td>
@@ -169,6 +196,9 @@ const CartInfoDetails = ({
               </PayPalScriptProvider> 
               }} */}
           </div>
+        )}
+        {!orderPlaced?.isPaid && (
+          <MPButton id={id} successPaymentHandler={successPaymentHandler} />
         )}
       </div>
     </div>

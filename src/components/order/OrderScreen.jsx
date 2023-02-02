@@ -2,10 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import { useGeneralContext } from "@/context/useGeneralContext";
 import axios from "axios";
 
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import OrderDetails from "@/components/order/OrderDetails";
 import CartInfoDetails from "@/components/order/CartInfoDetails";
-import MPButton from "@/components/buttons/MPButton";
 const OrderScreen = () => {
   const { user } = useContext(useGeneralContext);
   const { id } = useParams();
@@ -33,17 +32,21 @@ const OrderScreen = () => {
         setOrderPlacedError(error.message);
       });
   };
-  useEffect(() => {
-    getOrderPlaced(id);
-  }, [id]);
-
-  const [getOrderPaid, setGetOrderPaid] = useState(false);
+  const [params, setParams] = useSearchParams();
 
   useEffect(() => {
     setTimeout(() => {
       getOrderPlaced(id);
-    }, 500);
-  }, [getOrderPaid]);
+    }, 300);
+  }, [id]);
+  useEffect(() => {
+    const payment_id = params.get("payment_id");
+    if (payment_id) {
+      setTimeout(() => {
+        getOrderPlaced(id);
+      }, 200);
+    }
+  }, []);
 
   return (
     <>
@@ -56,10 +59,7 @@ const OrderScreen = () => {
         setOrderPlaced={setOrderPlaced}
         orderPlacedError={orderPlacedError}
         id={id}
-        getOrderPaid={getOrderPaid}
-        setGetOrderPaid={setGetOrderPaid}
       />
-      <MPButton id={id} />
     </>
   );
 };

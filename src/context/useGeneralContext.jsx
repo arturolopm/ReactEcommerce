@@ -220,6 +220,35 @@ export default (props) => {
     }
   };
 
+  // pay order MercadoPago
+
+  const payOrderMP = async (orderId, payment_id) => {
+    const config = {
+      method: "put",
+      url: `/api/orders/${orderId}/payMP`,
+
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+      data: {
+        payment_id: payment_id,
+      },
+    };
+
+    await axios(config);
+    try {
+      (function (response) {
+        setOrder(...order, (order.isPaid = response.data.isPaid));
+      });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+    }
+  };
+
   // Get user order's list
   const [orderListed, setOrderListed] = useState();
   const getOrderListed = async () => {
@@ -377,6 +406,7 @@ export default (props) => {
         payOrder,
         orderListed,
         getOrderListed,
+        payOrderMP,
         // getOrderPlaced,
         // orderPlaced,
       }}
