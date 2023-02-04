@@ -15,7 +15,7 @@ const MPButton = ({ id, successPaymentHandler }) => {
     // } catch (error) {
     //   console.log(error.message);
     // }
-    window.open(newdata.data.response.body.init_point);
+    window.open(newdata.data.response.body.init_point, _self);
   };
   // useEffect(() => {
 

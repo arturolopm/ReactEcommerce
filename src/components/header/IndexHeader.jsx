@@ -3,7 +3,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { RxDoubleArrowUp } from "react-icons/rx";
 
 import { Link } from "react-router-dom";
-import logoJade from "@/assets/images/logo.svg";
+import SunquwanOnlyLetters from "@/assets/images/SunquwanOnlyLetters.svg";
 import MenuIcon from "@/components/icons/MenuIcon";
 
 import CartHeader from "@/components/header/CartHeader";
@@ -31,7 +31,7 @@ const IndexHeader = () => {
 
   return (
     <div>
-      <header className="  container relative z-10 mx-auto flex items-center gap-8 p-4 md:p-0">
+      <header className="  container relative z-10 mx-auto flex items-center gap-6 p-4 md:p-0">
         <button
           className=" text-3xl text-slate-500 md:hidden"
           onClick={handleOpenMenu}
@@ -41,9 +41,9 @@ const IndexHeader = () => {
         {showLogo && (
           <Link to="/">
             <img
-              className=" mx-4 mr-auto mb-1 h-10 md:mr-5"
-              src={logoJade}
-              alt="Logo Jade"
+              className=" mr-0 mb-1 h-10 w-full  md:mr-5"
+              src={SunquwanOnlyLetters}
+              alt="Logo Sunquwan"
             />
           </Link>
         )}
@@ -67,7 +67,7 @@ const IndexHeader = () => {
 
       <div
         onClick={handleScrollUp}
-        className=" fixed bottom-20 right-5 z-50 hidden  text-5xl text-slate-500 md:block"
+        className=" fixed bottom-20 right-5 z-50 hidden text-5xl  text-slate-500 hover:cursor-pointer md:block"
       >
         <RxDoubleArrowUp />
       </div>
