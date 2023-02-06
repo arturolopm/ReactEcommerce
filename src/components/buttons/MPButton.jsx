@@ -15,7 +15,7 @@ const MPButton = ({ id, successPaymentHandler }) => {
     // } catch (error) {
     //   console.log(error.message);
     // }
-    window.open(newdata.data.response.body.init_point, _self);
+    window.location.href = newdata.data.response.body.init_point;
   };
   // useEffect(() => {
 
@@ -24,7 +24,11 @@ const MPButton = ({ id, successPaymentHandler }) => {
 
   return (
     <>
-      <button onClick={() => handleClick()}>Pagaaaaaar</button>
+      <button onClick={() => handleClick()}>
+        <div className=" mx-auto rounded-md border border-solid bg-gradient-to-r from-green-400 to-white transition-all duration-1000 hover:border-green-700 hover:from-white hover:to-green-400">
+          Pagar
+        </div>
+      </button>
     </>
   );
 };
