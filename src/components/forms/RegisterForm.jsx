@@ -34,9 +34,9 @@ const RegisterForm = () => {
   return (
     <>
       {/* Welcome heading */}
-      <h1 className="mx-auto mt-10 mb-4 text-center text-3xl font-bold text-green-primary">
+      <h2 className="mx-auto mt-10 mb-4 text-center text-3xl font-bold text-green-primary">
         Bienvenido
-      </h1>
+      </h2>
       {user ? (
         <div className=" mx-auto flex h-[69vh] w-full justify-center bg-slate-100">
           <div className="flex h-fit w-full max-w-sm flex-col rounded-md bg-white p-8 shadow-md">

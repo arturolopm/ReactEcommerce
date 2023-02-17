@@ -17,14 +17,14 @@ const PaymentForm = () => {
 
   return (
     <>
-      <h1 className="mx-auto mt-10 mb-4 text-center text-3xl font-bold text-green-primary">
+      <h2 className="mx-auto mt-10 mb-4 text-center text-3xl font-bold text-green-primary">
         Metodo de pago
-      </h1>
+      </h2>
       {cartItems.length == 0 ? (
         <div className=" mx-auto flex h-[69vh] w-full justify-center bg-slate-100">
-          <h1 className="mx-auto mt-10 mb-4 text-center text-lg font-bold text-dark-grayish-blue">
+          <h2 className="mx-auto mt-10 mb-4 text-center text-lg font-bold text-dark-grayish-blue">
             EL carrito no puede estar vacio para proceder al pago
-          </h1>
+          </h2>
         </div>
       ) : (
         <div className="h-88 container mx-auto mt-10 mb-20 flex max-w-md flex-wrap justify-center bg-slate-100">

@@ -37,9 +37,9 @@ const ProfileForm = () => {
   return (
     <>
       {/* Welcome heading */}
-      <h1 className="mx-auto mt-10 mb-2 text-center text-3xl font-bold text-green-primary">
+      <h2 className="mx-auto mt-10 mb-2 text-center text-3xl font-bold text-green-primary">
         Bienvenido
-      </h1>
+      </h2>
       <h2 className="mx-auto mt-1 mb-4 text-center text-base font-bold text-green-primary">
         Puedes modificar los detalles de tu perfil aqui
       </h2>

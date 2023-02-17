@@ -32,7 +32,7 @@ const OrderList = () => {
         <h4 className=" px-6 py-2 text-lg font-bold text-green-primary">
           Información de las órdenes
         </h4>
-        <h1 className=" ml-8 font-bold text-green-primary">{user?.name}</h1>
+        <h2 className=" ml-8 font-bold text-green-primary">{user?.name}</h2>
         <hr />
 
         {getOrdersList.length === 0 && (

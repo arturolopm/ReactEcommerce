@@ -6,9 +6,9 @@ const LoggedView = () => {
 
   return (
     <>
-      <h1 className=" mb-3 text-lg font-bold text-green-primary">
+      <h2 className=" mb-3 text-lg font-bold text-green-primary">
         {user?.name}
-      </h1>
+      </h2>
       {cartItems.length > 0 && (
         <Link
           to="/shipping"

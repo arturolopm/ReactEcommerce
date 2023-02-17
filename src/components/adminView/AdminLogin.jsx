@@ -26,9 +26,9 @@ const LoginForm = () => {
   return (
     <div className=" h-[69vh] w-full bg-slate-100">
       {/* Welcome heading */}
-      <h1 className="mx-auto mt-4 mb-4 text-center text-3xl font-bold text-green-primary md:mt-10">
+      <h2 className="mx-auto mt-4 mb-4 text-center text-3xl font-bold text-green-primary md:mt-10">
         Welcome
-      </h1>
+      </h2>
       {/* Form container */}
       <div className="h-88 container mx-auto mt-10 mb-20 flex max-w-md flex-wrap justify-center ">
         {/* If the user is logged in, render the LoggedView component */}

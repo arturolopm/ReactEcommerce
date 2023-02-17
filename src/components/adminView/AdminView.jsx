@@ -7,9 +7,9 @@ const AdminView = () => {
   const doubleCheck = () => (user.isAdmin ? "" : logOut());
   return (
     <>
-      <h1 className=" mb-3 text-lg font-bold text-green-primary">
+      <h2 className=" mb-3 text-lg font-bold text-green-primary">
         {user?.name}
-      </h1>
+      </h2>
       <Link
         to="/create-products"
         className="group relative hover:text-green-primary"

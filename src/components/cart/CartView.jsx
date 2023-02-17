@@ -14,7 +14,7 @@ const CartView = () => {
         <h4 className=" px-6 py-2 text-lg font-bold text-green-primary">
           Carrito
         </h4>
-        <h1 className=" ml-8">{user?.name}</h1>
+        <h2 className=" ml-8">{user?.name}</h2>
         <hr />
         <div className=" text-left text-slate-500 ">
           Borrar todos

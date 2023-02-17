@@ -19,7 +19,7 @@ const LoginForm = () => {
   return (
     <div className=" flex">
       <form onSubmit={submitHandler}>
-        {loginError && <h1>{loginError.message}</h1>}
+        {loginError && <h2>{loginError.message}</h2>}
         <input
           className=" mb-4 w-full border-b-2"
           type="email"
