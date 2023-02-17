@@ -27,9 +27,9 @@ const NavLinks = (props) => {
         <CloseIcon />
       </button>
       <NavLinkHeader text="Home" />
-      <NavLinkHeader text="Products" />
+      {/* <NavLinkHeader text="Products" /> */}
+      <NavLinkHeader text="Cart" />
       <NavLinkHeader text="Contact" />
-      {cart && <NavLinkHeader text="Cart" />}
     </nav>
   );
 };

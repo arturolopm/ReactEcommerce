@@ -9,7 +9,7 @@ const GalleryProductsHome = ({ ARRAY_IMGS, ARRAY_IMG_SMALL, _id }) => {
         ARRAY_IMGS={ARRAY_IMGS}
         ARRAY_IMG_SMALL={ARRAY_IMG_SMALL}
         _id={_id}
-        className="mx-auto flex max-h-[25%] min-w-[150px] max-w-[40%]  content-center md:gap-4"
+        className="mx-auto flex max-h-[25%] min-w-[180px]  max-w-[180px] content-center   md:gap-4"
       />
     </>
   );

@@ -20,7 +20,10 @@ const SlideProductsHome = ({
   // }
 
   return (
-    <section className="min-w-[150px] xl:max-w-sm" {...props}>
+    <section
+      className=" w-[150px] min-w-[150px] md:w-[336px]  xl:max-w-sm"
+      {...props}
+    >
       <Link to={`/products/${_id}`} className=" max-h-[25%] min-w-[150px]  ">
         <img
           src={ARRAY_IMGS[imgIndex]}
