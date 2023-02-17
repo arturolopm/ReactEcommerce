@@ -9,14 +9,14 @@ const Footer = () => {
           </h1>
           <div className=" flex grow justify-around ">
             <a
-              href="https://www.facebook.com/sunquwanstore"
+              href="https://instagram.com/sunquwancol"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaInstagram />
             </a>
             <a
-              href="https://instagram.com/sunquwancol"
+              href="https://www.facebook.com/sunquwanstore"
               target="_blank"
               rel="noopener noreferrer"
             >
