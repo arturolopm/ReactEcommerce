@@ -29,7 +29,11 @@ const DetailsProduct = ({ objectProduct }) => {
         {objectProduct?.description}
       </p>
       <div className=" mb-5 grid grid-cols-3 items-center gap-3 font-bold md:grid-cols-[1fr_3fr] md:gap-1">
-        <span className=" text-3xl">
+        <span
+          className=" text-3xl"
+          price={objectProduct.price * (1 - objectProduct.discount)}
+          currency="COP"
+        >
           COP
           {Intl.NumberFormat("es-CO", {
             style: "currency",
