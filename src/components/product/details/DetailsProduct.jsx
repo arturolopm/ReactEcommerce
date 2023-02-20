@@ -33,6 +33,7 @@ const DetailsProduct = ({ objectProduct }) => {
           className=" text-3xl"
           price={objectProduct.price * (1 - objectProduct.discount)}
           currency="COP"
+          priceCurrency="COP"
         >
           COP
           {Intl.NumberFormat("es-CO", {
