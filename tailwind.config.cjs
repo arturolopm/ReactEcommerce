@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Kumbh Sans", ...defaultTheme.fontFamily.sans],
+        sans: ["Noto Serif", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         "green-primary": "rgb(46, 166, 0)",

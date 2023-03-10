@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import banner from "@/assets/images/banner.png";
 
 import DetailsProductHome from "@/components/home/cartProductHome/DetailsProductHome";
 
@@ -39,6 +40,18 @@ const Home = () => {
   );
   return (
     <section className=" mx-auto min-h-screen max-w-7xl bg-white px-4 md:text-base">
+      {!keyword && (
+        <div className="  relative ">
+          <div className=" absolute top-1/3 left-1/2 z-10 translate-x-[-50%] text-center font-bold text-white">
+            <h2 className=" mb-1 text-xl md:mb-8 md:text-[64px] ">Sunquwan</h2>
+            <h3 className=" text-sm underline md:text-base">
+              Hecho con el corazón
+            </h3>
+          </div>
+          <img className="container  mx-auto " src={banner} alt="" srcset="" />
+        </div>
+      )}
+
       {keyword && <h2>Resultados basados en: {keyword}</h2>}
       {products.length == 0 && (
         <h2 className=" font-bold">
