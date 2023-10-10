@@ -9,7 +9,7 @@ import axios from "axios";
 
 const MPButton = ({ id, successPaymentHandler }) => {
   const handleClick = async () => {
-    const newdata = await axios.post(`/api/orders/${id}/paymp`);
+    const newdata = await axios.post(`/v1/api/orders/${id}/paymp`);
     // try {
 
     // } catch (error) {

@@ -20,7 +20,7 @@ const CartInfoDetails = ({
 
   const [clientId, setClientId] = useState();
   const addPayPalScript = async () => {
-    const { data: getClientId } = await axios.get("/api/config/paypal");
+    const { data: getClientId } = await axios.get("/v1/api/config/paypal");
     setClientId(getClientId);
   };
 

@@ -27,7 +27,7 @@ const Home = () => {
       const fetchProducts = async () => {
         // setPageNumber(parseInt(params.pagenumber));
         const { data } = await axios.get(
-          `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+          `/v1/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
         );
 
         setProducts(data.products);

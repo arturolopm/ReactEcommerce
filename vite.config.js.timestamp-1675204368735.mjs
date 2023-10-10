@@ -6,7 +6,7 @@ var __vite_injected_original_dirname = "E:\\FullStackEcommerce\\frontEnd";
 var vite_config_default = defineConfig({
   server: {
     proxy: {
-      "/api/": "http://localhost:5000/v1",
+      "/v1/api/": "http://localhost:5000/v1",
     },
   },
   plugins: [react()],

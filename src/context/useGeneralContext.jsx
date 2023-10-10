@@ -162,7 +162,7 @@ export default (props) => {
     });
     const config = {
       method: "post",
-      url: "/api/orders/",
+      url: "/v1/api/orders/",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${user.token}`,
@@ -198,7 +198,7 @@ export default (props) => {
     });
     const config = {
       method: "put",
-      url: `/api/orders/${orderId}/pay`,
+      url: `/v1/api/orders/${orderId}/pay`,
 
       headers: {
         "Content-Type": "application/json",
@@ -225,7 +225,7 @@ export default (props) => {
   const payOrderMP = async (orderId, payment_id) => {
     const config = {
       method: "put",
-      url: `/api/orders/${orderId}/payMP`,
+      url: `/v1/api/orders/${orderId}/payMP`,
 
       headers: {
         "Content-Type": "application/json",
@@ -289,7 +289,7 @@ export default (props) => {
 
     const config = {
       method: "post",
-      url: "/api/users/login",
+      url: "/v1/api/users/login",
       headers: {
         "Content-Type": "application/json",
       },
@@ -349,7 +349,7 @@ export default (props) => {
 
     const config = {
       method: "put",
-      url: "/api/users/profile",
+      url: "/v1/api/users/profile",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${user.token}`,

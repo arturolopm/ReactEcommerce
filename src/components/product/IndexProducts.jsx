@@ -12,7 +12,7 @@ const IndexProducts = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/products/${_id}`);
+      const { data } = await axios.get(`/v1/api/products/${_id}`);
       setProduct(data);
     };
     fetchProduct();
